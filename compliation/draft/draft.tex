@@ -1,0 +1,1610 @@
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{amsmath,amsthm,amssymb,bm,graphicx,hyperref,mathrsfs,geometry,float}
+
+\title{XXX model in BS coordinate}
+\author{Zhuan Ning}
+\date{\today}
+\linespread{1.25}
+
+\geometry{left=1.25in,right=1.25in,top=1in,bottom=1in}
+
+\numberwithin{equation}{section}
+
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue}
+
+\begin{document}
+
+\maketitle
+
+\section{Model}
+
+The model used by Janik
+\begin{equation}
+    \mathcal{L}=R-\frac{1}{2}\nabla_\mu\phi\nabla^\mu\phi-V(\phi)
+\end{equation}
+
+where
+\begin{equation}
+    V(\phi)=-6\cosh(\frac{\phi}{\sqrt{3}})+b_4\phi^4
+\end{equation}
+
+with $b_4=-\frac{1}{5}$.
+
+The model used by Tian
+\begin{equation}
+    \mathcal{L}=\frac{1}{2}(R-\nabla_\mu\psi\nabla^\mu\psi-2\tilde{V}(\psi))\sim R-\nabla_\mu\psi\nabla^\mu\psi-2\tilde{V}(\psi)
+\end{equation}
+
+so
+\begin{equation}
+    \psi=\frac{\phi}{\sqrt{2}},\quad\tilde{V}=\frac{V}{2}
+\end{equation}
+
+and
+\begin{equation}
+    \tilde{V}(\psi)=\frac{V(\phi)}{2}=\frac{V(\sqrt{2}\psi)}{2}=-3\cosh(\frac{\sqrt{6}\psi}{3})-\frac{2\psi^4}{5}
+\end{equation}
+
+\section{Spherical static solution}
+
+the BS coordinate
+\begin{equation}
+    ds^2=\frac{L^2}{z^2}[-f(z)e^{-\chi(z)}dv^2-2e^{-\chi}dvdz+d\theta^2+\sin^2\theta d\varphi^2]
+\end{equation}
+
+\section{Qusinormal modes with azimuthal quantum number $l$}
+
+the BS coordinate
+\begin{equation}
+    ds^2=\frac{L^2}{z^2}(-[f(v,z,\theta)e^{-\chi(v,z,\theta)}-e^{A(v,z,\theta)}\xi(v,z,\theta)^2]dv^2-2e^{-\chi}dvdz-2\xi e^Advd\theta+e^Ad\theta^2+e^{-A}\sin^2\theta d\varphi^2)
+\end{equation}
+
+one of the equations
+
+\begin{equation}
+    E_{z\theta}=z^2\left(\frac{e^{A+\chi} \xi'}{z^{2}}\right)' + (A+\chi)'_\theta + 2 \cot\theta A' + \frac{2 \chi_\theta}{z} - (A' A_\theta + \phi' \phi_\theta)
+\end{equation}
+
+linear perturbation on top of the spherical static background
+\begin{equation}
+    \xi=0,A=0,f_\theta=0,\chi_\theta=0,\phi_\theta=0,f_v=0,\chi_v=0,\phi_v=0
+\end{equation}
+
+\begin{equation}
+    \delta E=z^2\left(\frac{e^{\chi} \delta\xi'}{z^{2}}\right)' + (\delta A+\delta\chi)'_\theta + 2 \cot\theta \delta A' + \frac{2 \delta\chi_\theta}{z} - \phi' \delta\phi_\theta
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        \Delta_2\delta\chi &= \frac{1}{\sin\theta}\partial_\theta(\sin\theta \delta\chi_\theta)\\
+        \Delta_2\delta\phi &= \frac{1}{\sin\theta}\partial_\theta(\sin\theta \delta\phi_\theta)\\
+        \delta\Xi &= \frac{1}{\sin\theta}\partial_\theta(\sin\theta \delta\xi)\\
+        &= \delta\xi_\theta + \cot\theta\delta\xi\\
+        \delta{a} &= \frac{1}{\sin\theta}\partial_\theta(\sin\theta (\delta A_\theta+2\cot\theta \delta A))\\
+        &= \delta{A}_{\theta\theta} + 3 \cot\theta \delta{A}_\theta - 2 \delta{A}
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \frac{1}{\sin\theta}\partial_\theta(\sin\theta \delta E)=z^2\left(\frac{e^{\chi} \delta\Xi'}{z^{2}}\right)' + \delta a'+\Delta_2\delta\chi' + \frac{2 \Delta_2\delta\chi}{z} - \phi' \Delta_2\delta\phi
+\end{equation}
+
+\begin{equation}
+    \delta\Psi=(\delta f,\delta\chi,\delta\Xi,\delta a,\delta\phi)\sim e^{-i\omega v}P_l(\cos\theta)\tilde{\Psi}(z)
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        \partial_v&\rightarrow-i\omega\\
+        \partial_z&\rightarrow D\\
+        \Delta_2&\rightarrow -l(l+1)
+    \end{aligned}
+\end{equation}
+
+\subsection{boundary condition}
+
+用演化的方法来求QNM其实就是在线性的层面做演化，所以要施加和时间演化一样的边界条件。
+
+但是我们可以通过使用演化方程而不是约束方程（在这里是对于$f$和$\xi$），来避开施加类似于能量守恒和动量守恒这样的跟时间导数有关的边界条件。因此选择使用哪些方程来求QNM很关键，最简单的选择就是尽可能用演化方程。
+
+我在一开始测试的时候，对于Schwarzschild-AdS黑洞，$f$和$\xi$全用约束方程，然后只施加source不变的边界条件，就能刚好得到Schwarzschild-AdS黑洞在纯标量扰动下的QNM。而后来测试把$f$和$\xi$换成演化方程就不行了，猜测是在之前的情况下，因为背景标量场为0，用约束方程的话可能刚好不起作用，就跟只是用标量场方程来求QNM得到了一样的结果。
+
+\section{Time evolution}
+
+\subsection{homogeneous case}
+
+The dimension of spacetime is $d=1+3$, let $\kappa_4^2=8\pi G_4=1$. The Lagrangian density
+\begin{equation}
+    \mathcal{L}=\frac{1}{2}(R-\nabla_\mu\phi\nabla^\mu\phi-2V(\phi))
+\end{equation}
+
+the Einstein equation
+\begin{equation}
+    G_{\mu\nu}=R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=T_{\mu\nu}=T_{\mu\nu}^\phi
+\end{equation}
+\begin{equation}
+    T_{\mu\nu}^\phi=\partial_\mu\phi\partial_\nu\phi-[\frac{1}{2}\partial_\rho\phi\partial^\rho\phi+V(\phi)]g_{\mu\nu}
+\end{equation}
+
+the equation of motion of scalar field
+\begin{equation}
+    \begin{aligned}
+        \nabla_\mu\nabla^\mu\phi&=\frac{dV(\phi)}{d\phi}\\
+        \frac{1}{\sqrt{-g}}\partial_\mu(\sqrt{-g}g^{\mu\nu}\partial_\nu\phi)&=V_\phi
+    \end{aligned}
+\end{equation}
+
+the BS coordinate
+\begin{equation}
+    ds^2=\frac{L^2}{z^2}[-f(v,z)e^{-\chi(v,z)}dv^2-2e^{-\chi(v,z)}dvdz+d\Omega_2^2]
+\end{equation}
+\begin{equation}
+    \sqrt{-g}=\frac{L^4}{z^4}e^{-\chi}\sin\theta
+\end{equation}
+\begin{equation}
+    [g^{\mu\nu}]=\frac{z^2}{L^2}
+        \begin{pmatrix}
+            0&-e^\chi&&\\
+            -e^\chi&fe^\chi&&\\
+            &&1&&\\
+            &&&\sin^{-2}\theta&\\
+        \end{pmatrix}
+\end{equation}
+\begin{align}
+    G_{vv}&=\frac{z f \left(f'-\dot{\chi}+z e^{-\chi }\right)-z \dot{f}+f^2 \left(z \chi'-3\right)}{z^2} \\
+    G_{vz}&=\frac{z \left(f'+z e^{-\chi }\right)+f \left(z \chi'-3\right)}{z^2} \\
+    G_{zz}&=\frac{2 \chi'}{z} \\
+    G_{\theta\theta}&=-\frac{e^{\chi } \left(z \left(f' \left(z \chi'+4\right)-z \left(f''+2 \dot{\chi}'\right)\right)+f \left(z^2 \chi''-6\right)\right)}{2 z^2} \\
+    G_{\varphi\varphi}&=\sin^2\theta G_{\theta\theta}
+\end{align}
+\begin{align}
+    T_{vv}^\phi&=f \left(\frac{L^2 e^{-\chi } V(\phi )}{z^2}-\phi' \dot{\phi}\right)+\frac{1}{2} f^2 \phi'^2+\dot{\phi}^2 \\
+    T_{vz}^\phi&=\frac{1}{2} f \phi'^2+\frac{L^2 e^{-\chi } V(\phi )}{z^2} \\
+    T_{zz}^\phi&=\phi'^2 \\
+    T_{\theta\theta}^\phi&=-\frac{1}{2} e^{\chi } \phi' \left(f \phi'-2 \dot{\phi}\right)-\frac{L^2 V(\phi )}{z^2} \\
+    T_{\varphi\varphi}^\phi&=\sin^2\theta T_{\theta\theta}^\phi
+\end{align}
+
+the combinations of the Einstein equation
+\begin{equation}
+    G_{zz}=\frac{2\chi'}{z}=T_{zz}^\phi=\phi'^2=\Phi^2
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        G_{vv}-fG_{vz}&=\frac{-\dot{f}-f\dot{\chi}}{z}\\
+        &=T_{vv}^\phi-fT_{vz}^\phi\\
+        &=\dot{\phi}^2-f\dot{\phi}\phi'\\
+        &=\Pi^2-f\Pi\Phi
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        G_{vz}-\frac{f}{2}G_{zz}&=e^{-\chi}+\frac{f'}{z}-\frac{3f}{z^2}\\
+        &=T_{vz}^\phi-\frac{f}{2}T_{zz}^\phi\\
+        &=\frac{L^2 e^{-\chi } V(\phi )}{z^2}
+    \end{aligned}
+\end{equation}
+
+where
+\begin{equation}
+    \begin{aligned}
+        \Phi&=\phi'=\partial_z\phi\\
+        \Pi&=\dot{\phi}=\partial_v\phi
+    \end{aligned}
+\end{equation}
+
+the equation of motion of scalar field
+\begin{equation}
+    \begin{aligned}
+        \partial_\mu(\sqrt{-g}g^{\mu\nu}\partial_\nu\phi)&=\partial_v(\sqrt{-g}g^{vz}\partial_z\phi)+\partial_z(\sqrt{-g}(g^{zv}\partial_v\phi+g^{zz}\partial_z\phi))\\
+        &=\sqrt{-g}V_\phi\\
+        \frac{\dot{\phi}}{z}-\dot{\phi}'+\frac{z^2}{2}\left(\frac{f\phi'}{z^2}\right)'&=\frac{L^2}{2z^2}e^{-\chi}V_\phi\\
+        \Pi'-\frac{\Pi}{z}&=\frac{z^2}{2}\left(\frac{f\Phi}{z^2}\right)'-\frac{L^2}{2z^2}e^{-\chi}V_\phi
+    \end{aligned}
+\end{equation}
+
+有如下两种演化方案：
+
+第一种，$f$用演化方程：$\Phi$和$f$给初值，，从约束方程得到$\chi$和$\Pi$的初值，然后演化$\Phi$（即求它的时间导数），再演化$f$（注意，
+令$f=\tilde{f}e^{-\chi}$，可以把$f$的演化方程和$\chi$退耦）
+
+第二种，$f$用约束方程：$\Phi$给初值，从约束方程得到$\chi$,$f$和$\Pi$的初值，边界条件分别为$\chi|_B=0$，和从$f$的演化方程渐近展开得到的一个等式（即对$f$的能量约束），然后就能演化$\Phi$了
+
+在Mathematica程序里，$\delta$是$\chi$，A是$\Phi$，P是$\Pi$，diz是对z积分，dz是对z求导。
+
+\subsection{homogeneous case with superradiation}
+
+\begin{equation}
+    I=\int d^{4}y\sqrt{-g}[\frac{1}{2}R-\frac{1}{2}(\partial\phi)^{2}-V(\phi)-\frac{1}{4}F(\phi)F^{\sigma\rho}F_{\sigma\rho}]
+\end{equation}
+
+\begin{equation}
+    e^{-\chi}+\frac{f^{\prime}}{z}-\frac{3f}{z^{2}}=\frac{L^{2}}{z^{2}}e^{-\chi}V+\frac{1}{2}\frac{z^{2}}{L^{2}}e^{\chi}FA_{v}^{\prime2}
+\end{equation}
+
+\begin{equation}
+    \frac{1}{z}[-\dot{f}-f\dot{\chi}]=\Pi^{2}-f\Pi\Phi
+\end{equation}
+
+\begin{equation}
+    \dot{f}|_{r_h}=-\frac{1}{r_h}\dot{\phi}^2<0
+\end{equation}
+
+\begin{equation}
+    f'|_{r_h}=-\frac{1}{r_h}e^{-\chi}+r_h e^{-\chi}V(\phi)+\frac{1}{2r_h^3}e^{\chi}F(\phi)A^{\prime2}
+\end{equation}
+
+\begin{equation}
+    V(\phi)=-6+\frac{1}{2}m^2\phi^2<0
+\end{equation}
+
+\begin{equation}
+    \dot{z}_{h}=-\frac{\dot{f}_{h}}{f_{h}^{\prime}}
+\end{equation}
+
+\begin{equation}
+    \dot{z}_{h}=-\frac{\dot{r}_h}{r_h^2}
+\end{equation}
+
+\begin{equation}
+    \partial_t(r_h)=\frac{2\dot{\phi}^2}{2r_h^2e^{-\chi}-2r_h^4 e^{-\chi}(2\Lambda+m^2\phi^2)-e^{\chi}F(\phi)A^{\prime2}}
+\end{equation}
+
+\subsection{inhomogeneous case with planar topology}
+
+\subsubsection{equation}
+
+The dimension of spacetime is $d=1+3$, let $\kappa_4^2=8\pi G_4=1$. The Lagrangian density
+\begin{equation}
+    \mathcal{L}=R-\frac{1}{2}\nabla_\mu\phi\nabla^\mu\phi-V(\phi)
+\end{equation}
+
+the Einstein equation
+\begin{equation}
+    G_{\mu\nu}=R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=T_{\mu\nu}=T_{\mu\nu}^\phi
+\end{equation}
+\begin{equation}
+    T_{\mu\nu}^\phi=\frac{1}{2}(\partial_\mu\phi\partial_\nu\phi-[\frac{1}{2}\partial_\rho\phi\partial^\rho\phi+V(\phi)]g_{\mu\nu})
+\end{equation}
+\begin{equation}
+    E_{\mu\nu}=G_{\mu\nu}-T_{\mu\nu}
+\end{equation}
+
+the equation of motion of scalar field
+\begin{equation}
+    \begin{aligned}
+        \nabla_\mu\nabla^\mu\phi&=\frac{dV(\phi)}{d\phi}\\
+        \frac{1}{\sqrt{-g}}\partial_\mu(\sqrt{-g}g^{\mu\nu}\partial_\nu\phi)&=V_\phi
+    \end{aligned}
+\end{equation}
+
+the BS coordinate
+\begin{equation}
+    ds^2=\frac{L^2}{z^2}(-[f(v,z,x)e^{-\chi(v,z,x)}-e^{A(v,z,x)}\xi(v,z,x)^2]dv^2-2e^{-\chi}dvdz-2\xi e^Advdx+e^Adx^2+e^{-A}dy^2)
+\end{equation}
+
+$E_{zz}$ gives the constraint equation of $\chi$:
+\begin{equation}
+    \chi'=\frac{z}{4}(A'^2+\phi'^2)
+\end{equation}
+
+\begin{equation}
+    z\left(\frac{\chi}{z^2}\right)'+2\frac{\chi}{z^2}=\frac{1}{4}(A'^2+\phi'^2)
+\end{equation}
+
+$E_{zx}$ gives the constraint equation of $\xi$:
+\begin{equation}
+    \begin{aligned}
+        \left(\frac{e^{A+\chi}}{z^2}\xi'\right)'&=-\frac{1}{z^{2}}[(A+\chi)^{\prime}_{x}+\frac{2\chi_{x}}{z}-(A^{\prime}A_{x}+\phi'\phi_{x})]\\
+        \xi'&=\left(\frac{e^{A+\chi}}{z^2}\xi'\right)\frac{z^2}{e^{A+\chi}}
+    \end{aligned}
+\end{equation}
+
+$E_{vz}-\frac{f}{2}E_{zz}+\xi E_{zx}$ gives the constraint equation of $f$:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{COM}&=\frac{e^{A+\chi}}{4}\xi^{\prime2}+\frac{\xi_{x}}{z}-\frac{\xi_{x}^{\prime}}{2}-\frac{e^{-A-\chi}}{4}(2A_x\chi_x+\chi_{x}^2-\phi_x^2)+\frac{(e^{-A-\chi})_{xx}}{2}\\
+        &=\frac{e^{A+\chi}}{4}\xi^{\prime2}+\frac{\xi_{x}}{z}-\frac{\xi_{x}^{\prime}}{2}+\frac{e^{-A-\chi}}{2}[A_x^2+A_x\chi_x+\frac{1}{2}\chi_{x}^2+\frac{1}{2}\phi_x^2-(A_{xx}+\chi_{xx})]
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        (\frac{f}{z^{3}})^{\prime}&=\frac{\xi_{x}}{z^{3}}+\frac{L^{2}}{2z^{4}}e^{-\chi}V+\frac{\mathrm{COM}}{z^{2}}\\
+        &=(\frac{1+z^2\tilde{f}}{z^{3}})^{\prime}\\
+        z(\frac{\tilde{f}}{z})^{\prime}&=\tilde{f}'-\frac{\tilde
+        {f}}{z}\\
+        &=\frac{\xi_{x}}{z^2}+\frac{1}{z^3}(3+\frac{L^{2}}{2}e^{-\chi}V)+\frac{\mathrm{COM}}{z}
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        (\frac{f}{z^{3}})^{\prime}&=\frac{\xi_{x}}{z^{3}}+\frac{L^{2}}{2z^{4}}e^{-\chi}V+\frac{\mathrm{COM}}{z^{2}}\\
+        zf'-3f&=z\xi_{x}+\frac{L^{2}}{2}e^{-\chi}V+z^2\mathrm{COM}\\
+        &=2z\xi_{x}+\frac{L^{2}}{2}e^{-\chi}V+z^2(\mathrm{COM}-\frac{\xi_x}{z})\\
+        &=2z\xi_{x}+\frac{L^{2}}{2}e^{-\chi}V+z^2\mathrm{COM}_f\\
+        \mathrm{COM}_f&=\mathrm{COM}-\frac{\xi_x}{z}\\
+        &=\frac{e^{A+\chi}}{4}\xi^{\prime2}-\frac{\xi_{x}^{\prime}}{2}-\frac{e^{-A-\chi}}{4}(2A_x\chi_x+\chi_{x}^2-\phi_x^2)+\frac{(e^{-A-\chi})_{xx}}{2}\\
+        &=\frac{e^{A+\chi}}{4}\xi^{\prime2}-\frac{\xi_{x}^{\prime}}{2}+\frac{e^{-A-\chi}}{2}[A_x^2+A_x\chi_x+\frac{1}{2}\chi_{x}^2+\frac{1}{2}\phi_x^2-(A_{xx}+\chi_{xx})]
+    \end{aligned}
+\end{equation}
+
+$e^{-A-\chi}E_{xx}-e^{A-\chi}E_{yy}$ gives the evolution equation of $A$:
+\begin{equation}
+    \begin{aligned}
+        z(\frac{\dot{A}}{z})^{\prime}&=\dot{A}^{\prime}-\frac{\dot{A}}{z}\\
+        &=\frac{z^{2}}{2}(\frac{fA^{\prime}-\xi A_{x}}{z^{2}})^{\prime}+\frac{(e^{-A-\chi}A_{x}-\xi A^{\prime})_{x}}{2}+\mathrm{COM}\\
+        &=\frac{(fA^{\prime}-\xi A_{x})'}{2}-\frac{fA^{\prime}-\xi A_{x}}{z}+\frac{(e^{-A-\chi}A_{x}-\xi A^{\prime})_{x}}{2}+\mathrm{COM}\\
+        &=\frac{(fA^{\prime}-\xi A_{x})'}{2}-\frac{fA^{\prime}-\xi A_{x}}{z}-\frac{(\xi A^{\prime})_{x}}{2}\\
+        &\quad+\frac{e^{A+\chi}}{4}\xi^{\prime2}+\frac{\xi_{x}}{z}-\frac{\xi_{x}^{\prime}}{2}+\frac{e^{-A-\chi}}{2}[\frac{1}{2}\chi_{x}^2+\frac{1}{2}\phi_x^2-\chi_{xx}]
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    z(\frac{\dot{A}}{z})^{\prime}=\frac{(fA^{\prime}-\xi A_{x})'}{2}-\frac{fA^{\prime}-\xi A_{x}}{z}+\frac{(e^{-A-\chi}A_{x}-\xi A^{\prime})_{x}}{2}+\mathrm{COM}
+\end{equation}
+
+\begin{equation}
+    \dot{A}^{\prime}-\frac{\dot{A}}{z}=\frac{(fA^{\prime}-\xi A_{x})'}{2}-\frac{fA^{\prime}-\xi A_{x}}{z}+\frac{(e^{-A-\chi}A_{x}-\xi A^{\prime})_{x}}{2}+\mathrm{COM}
+\end{equation}
+
+the scalar equation gives the evolution equation of $\phi$:
+\begin{equation}
+    \begin{aligned}
+        z(\frac{\dot{\phi}}{z})^{\prime}&=\dot{\phi}^{\prime}-\frac{\dot{\phi}}{z}\\
+        &=\frac{z^{2}}{2}(\frac{f\phi'-\xi\phi_{x}}{z^{2}})^{\prime}+\frac{(e^{-A-\chi}\phi_{x}-\xi\phi')_{x}}{2}-\frac{L^{2}}{2z^{2}}e^{-\chi}V_\phi\\
+        &=\frac{(f\phi'-\xi\phi_{x})'}{2}-\frac{f\phi'-\xi\phi_{x}}{z}+\frac{(e^{-A-\chi}\phi_{x}-\xi\phi')_{x}}{2}-\frac{L^{2}}{2z^{2}}e^{-\chi}V_\phi
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    z(\frac{\dot{\phi}}{z})^{\prime}=\frac{(f\phi'-\xi\phi_{x})'}{2}-\frac{f\phi'-\xi\phi_{x}}{z}+\frac{(e^{-A-\chi}\phi_{x}-\xi\phi')_{x}}{2}-\frac{L^{2}}{2z^{2}}e^{-\chi}V_\phi
+\end{equation}
+
+\begin{equation}
+    \dot{\phi}^{\prime}-\frac{\dot{\phi}}{z}=\frac{(f\phi'-\xi\phi_{x})'}{2}-\frac{f\phi'-\xi\phi_{x}}{z}+\frac{(e^{-A-\chi}\phi_{x}-\xi\phi')_{x}}{2}-\frac{L^{2}}{2z^{2}}e^{-\chi}V_\phi
+\end{equation}
+
+$E_{xn}=E_{xv}-fE_{xz}+\xi E_{xx}$ gives the evolution equation of $\xi$:
+\begin{equation}
+    \begin{aligned}
+        0&=\frac{2}{z}(f_{x}+f\chi_{x})+(2\xi e^{A+\chi}\xi^{\prime}-f^{\prime}+f[A^{\prime}+\chi^{\prime}])_{x}-\xi(e^{A+\chi}\xi^{\prime})_{x}-\xi(A+\chi)_{xx}\\
+        &\quad+A_{x}d_{n}A+\phi_{x}d_n\phi-(\dot{A}+\dot{\chi})_{x}+(e^{A+\chi}\xi^{\prime})_{v}\\
+        &=\frac{2}{z}(f_{x}+f\chi_{x})+2\xi_{x}e^{A+\chi}\xi^{\prime}+(f[A^{\prime}+\chi^{\prime}]-f^{\prime})_{x}+\xi(e^{A+\chi}\xi^{\prime})_{x}-\xi(A+\chi)_{xx}\\
+        &\quad+A_{x}d_{n}A+\phi_{x}d_n\phi-(\dot{A}+\dot{\chi})_{x}+(e^{A+\chi}\xi^{\prime})_{v}\\
+        &=\frac{2}{z}(f_{x}+f\chi_{x})+(2\xi e^{A+\chi}\xi^{\prime}-f^{\prime}+f[A^{\prime}+\chi^{\prime}]-[\dot{A}+\dot{\chi}])_{x}-\xi(e^{A+\chi}\xi^{\prime}+A_x+\chi_x)_{x}\\
+        &\quad+A_{x}d_{n}A+\phi_{x}d_n\phi+(e^{A+\chi}\xi^{\prime})_{v}
+    \end{aligned}
+\end{equation}
+
+where $d_{n}:=\partial_{v}-f\partial_{z}+\xi\partial_{x}$.
+
+$E_{vn}=E_{vv}-fE_{vz}+\xi E_{vx}$ gives the evolution equation of $f$:
+\begin{equation}
+    \begin{aligned}
+        0&=(e^{-A-\chi}f_{x}-[f\xi]^{\prime}+\xi^{2}e^{A+\chi}\xi^{\prime}-\xi[d_{n}A+d_{n}\chi]-2d_{n}\xi)_{x}-\xi_x(\dot{A}+\dot{\chi})\\
+        &\quad-\frac{2}{z}(\dot{f}+f\dot{\chi})-\dot{A}d_{n}A-\dot{\phi}d_n\phi+\xi(e^{A+\chi}\xi^{\prime})_{v}
+    \end{aligned}
+\end{equation}
+
+$\chi$, $f$和$\xi$的时间导数的计算：
+
+$\partial_v E_{zz}$ gives the evolution equation of $\chi$:
+\begin{equation}
+    \dot{\chi}'=\frac{z}{2}(A'\dot{A}'+\phi'\dot{\phi}')
+\end{equation}
+
+$E_{xn}=E_{xv}-fE_{xz}+\xi E_{xx}$ gives the evolution equation of $\xi$:
+\begin{equation}
+    \begin{aligned} 
+        (e^{A+\chi}\xi^{\prime})_{v}&=-\frac{2}{z}(f_{x}+f\chi_{x})-(2\xi e^{A+\chi}\xi^{\prime}-f^{\prime}+f[A^{\prime}+\chi^{\prime}]-[\dot{A}+\dot{\chi}])_{x}+\xi(e^{A+\chi}\xi^{\prime}+A_{x}+\chi_{x})_{x}\\
+        &\quad-A_{x}d_{n}A-\phi_{x}d_n\phi\\
+        (e^{A+\chi}\xi^{\prime})_{v}&=e^{A+\chi}[\xi^{\prime}(\dot{A}+\dot{\chi})+\dot{\xi}']\\
+        \dot{\xi}'&=e^{-A-\chi}(e^{A+\chi}\xi^{\prime})_{v}-\xi^{\prime}(\dot{A}+\dot{\chi})
+    \end{aligned}
+\end{equation}
+
+$E_{vn}=E_{vv}-fE_{vz}+\xi E_{vx}$ gives the evolution equation of $f$:
+\begin{equation}
+    \begin{aligned}
+        \dot{f}&=\frac{z}{2}[(e^{-A-\chi}f_{x}-[f\xi]^{\prime}+\xi^{2}e^{A+\chi}\xi^{\prime}-\xi[d_{n}A+d_{n}\chi]-2d_{n}\xi)_{x}-\xi_x(\dot{A}+\dot{\chi})\\
+        &\quad-\dot{A}d_{n}A-\dot{\phi}d_n\phi+\xi(e^{A+\chi}\xi^{\prime})_{v}]-f\dot{\chi}
+    \end{aligned}
+\end{equation}
+
+alternatively, $\partial_v E_{zx}$ and $\partial_v (E_{vz}-\frac{f}{2}E_{zz}+\xi E_{zx})$ gives
+\begin{equation}
+    \begin{aligned}
+        \left(\frac{(e^{A+\chi}\xi')_v}{z^2}\right)'&=-\frac{1}{z^{2}}[(\dot{A}+\dot{\chi})^{\prime}_{x}+\frac{2\dot{\chi}_{x}}{z}
+        -(\dot{A}_{x}A^{\prime}+A_{x}\dot{A}^{\prime}+\dot{\phi}_{x}\phi'+\phi_{x}\dot{\phi}')]\\
+        \dot{\xi}'&=z^2e^{-A-\chi}\frac{(e^{A+\chi}\xi^{\prime})_{v}}{z^2}-\xi^{\prime}(\dot{A}+\dot{\chi})
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        \partial_v\mathrm{COM}&=\frac{e^{A+\chi}(\dot{A}+\dot{\chi})}{4}\xi^{\prime2}+\frac{e^{A+\chi}}{2}\xi^{\prime}\dot{\xi}'+\frac{\dot{\xi}_{x}}{z}-\frac{\dot{\xi}_{x}^{\prime}}{2}\\
+        &\quad+\frac{e^{-A-\chi}(\dot{A}+\dot{\chi})}{4}(2A_x\chi_x+\chi_{x}^2-\phi_x^2)-\frac{e^{-A-\chi}}{4}(2\dot{A}_x\chi_x+2A_x\dot{\chi}_x+2\chi_{x}\dot{\chi}_{x}-2\phi_x\dot{\phi}_x)\\
+        &\quad-\frac{(e^{-A-\chi}(\dot{A}+\dot{\chi}))_{xx}}{2}\\
+        &=\frac{e^{A+\chi}}{4}\xi'[\xi'(\dot{A}+\dot{\chi})+2\dot{\xi}']+\frac{\dot{\xi}_{x}}{z}-\frac{\dot{\xi}_{x}^{\prime}}{2}\\
+        &\quad-\frac{e^{-A-\chi}}{4}[-(\dot{A}+\dot{\chi})(2A_x\chi_x+\chi_{x}^2-\phi_x^2)+(2\dot{A}_x\chi_x+2A_x\dot{\chi}_x+2\chi_{x}\dot{\chi}_{x}-2\phi_x\dot{\phi}_x)]\\
+        &\quad-\frac{(e^{-A-\chi}(\dot{A}+\dot{\chi}))_{xx}}{2}
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        z(\frac{\dot{\tilde{f}}}{z})^{\prime}&=\dot{\tilde{f}}'-\frac{\dot{\tilde
+        {f}}}{z}\\
+        &=(-\frac{L^{2}}{2}e^{-\chi}\dot{\chi}V+\frac{L^{2}}{2}e^{-\chi}V_\phi\dot{\phi})\frac{1}{z^3}+\frac{\dot{\xi}_{x}}{z^2}+\frac{\partial_v\mathrm{COM}}{z}
+    \end{aligned}
+\end{equation}
+
+\subsubsection{asymptotic behavior}
+
+Assumning $L=1$, we expand the fields near the boundary ($z=0$):
+\begin{equation}
+    \begin{aligned}
+        f&=f_0+f_1 z+f_2 z^2+f_3 z^3+O(z^4)\\
+        \chi&=\chi_0+\chi_1 z+\chi_2 z^2+\chi_3 z^3+O(z^4)\\
+        \xi&=\xi_0+\xi_1 z+\xi_2 z^2+\xi_3 z^3+O(z^4)\\
+        A&=A_0+A_1 z+A_2 z^2+A_3 z^3+O(z^4)\\
+        \phi&=\phi_0+\phi_1 z+\phi_2 z^2+\phi_3 z^3+O(z^4)\\
+    \end{aligned}
+\end{equation}
+
+both $f_i$ are function of $(v,x)$, substituting them into equations of motion, we can get
+\begin{equation}
+    \chi_1=0,\phi_0=0,\xi_1=e^{-A_0-\chi_0}\partial_x\chi_0,f_0=e^{-\chi_0},f_1=-\partial_x\xi_0
+\end{equation}
+
+after letting $\chi_0=0,\xi_0=0$, we can get
+\begin{equation}
+    \xi_1=0,f_0=1,f_1=0
+\end{equation}
+\begin{equation}
+    A_1=\partial_v A_0,A_2=0
+\end{equation}
+
+after letting $A_0=0$, we can get
+\begin{equation}
+    A_1=0
+\end{equation}
+\begin{equation}
+    \xi_2=0,f_2=\chi_2,\chi_2=\frac{\phi_1^2}{8},\chi_3=\frac{\phi_1\phi_2}{3}
+\end{equation}
+\begin{equation}
+    \phi_3=\partial_v\phi_2-\frac{119\phi_1^3}{360}-\frac{\partial_x^2\phi_1}{2}
+\end{equation}
+\begin{equation}
+    \partial_v\xi_3=\frac{\partial_x f_3}{3}-\partial_x A_3-\frac{2\phi_1\partial_x\phi_2}{9}+\frac{\phi_2\partial_x\phi_1}{9}-\frac{\partial_v\phi_1\partial_x\phi_1}{4}+\frac{\phi_1\partial_{vx}\phi_1}{12}
+\end{equation}
+\begin{equation}
+    \partial_v f_3=\frac{3\partial_x\xi_3}{2}+\frac{\phi_1\partial_v\phi_2}{6}+\frac{2\phi_2\partial_v\phi_1}{3}-\frac{(\partial_v\phi_1)^2}{2}+\frac{(\partial_x\phi_1)^2}{8}+\frac{\phi_1\partial_x^2\phi_1}{8}
+\end{equation}
+
+after letting $\phi_1(v,x)=\phi_1$, we can get
+\begin{equation}
+    \begin{aligned}
+        f&=1+\frac{\phi_1^2}{8}z^2+f_3 z^3+O(z^4)\\
+        \chi&=\frac{\phi_1^2}{8}z^2+\frac{\phi_1\phi_2}{3}z^3+O(z^4)\\
+        \xi&=\xi_3 z^3+O(z^4)\\
+        A&=A_3 z^3+O(z^4)\\
+        \phi&=\phi_1 z+\phi_2 z^2+(\partial_v\phi_2-\frac{119\phi_1^3}{360})z^3+O(z^4)\\
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \partial_v\xi_3=\frac{\partial_x f_3}{3}-\partial_x A_3-\frac{2\phi_1\partial_x\phi_2}{9}=\partial_x(\frac{ f_3}{3}-A_3-\frac{2\phi_1\phi_2}{9})
+\end{equation}
+\begin{equation}
+    \partial_v f_3=\frac{3\partial_x\xi_3}{2}+\frac{\phi_1\partial_v\phi_2}{6}
+\end{equation}
+
+\subsubsection{subtraction}
+
+let
+\begin{equation}
+    \begin{aligned}
+        f&=1+\frac{\phi_1^2}{8}z^2+z^3\tilde{f}\\
+        \chi&=\frac{\phi_1^2}{8}z^2+z^3\tilde{\chi}\\
+        \xi&=z^3\tilde{\xi}\\
+        A&=z^3\tilde{A}\\
+        \phi&=\phi_1 z+z^2\tilde{\phi}
+    \end{aligned}
+\end{equation}
+
+the equations become
+\begin{equation}
+    \begin{aligned}
+        z(z^2\tilde{\chi}'+3z\tilde{\chi}+\frac{\phi_1^2}{4})&=\frac{z}{4}((z^3\tilde{A}'+3z^2\tilde{A})^2+(z^2\tilde{\phi}'+2z\tilde{\phi}+\phi_1)^2)\\
+        z^2\tilde{\chi}'+3z\tilde{\chi}+\frac{\phi_1^2}{4}&=\frac{1}{4}((z^3\tilde{A}'+3z^2\tilde{A})^2+(z^2\tilde{\phi}'+2z\tilde{\phi})^2+2(z^2\tilde{\phi}'+2z\tilde{\phi})\phi_1)+\frac{\phi_1^2}{4}\\
+        z\tilde{\chi}'+3\tilde{\chi}&=\frac{1}{4}(z^3(z\tilde{A}'+3\tilde{A})^2+z(z\tilde{\phi}'+2\tilde{\phi})^2+2(z\tilde{\phi}'+2\tilde{\phi})\phi_1)
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        A'&=z^2(z\tilde{A}'+3\tilde{A})\\
+        \phi'&=z(z\tilde{\phi}'+2\tilde{\phi})+\phi_1
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        \left(e^{A+\chi}(z\tilde{\xi}'+3\tilde{\xi})\right)'&=-[z(\tilde{A}+\tilde{\chi})^{\prime}_{x}+3(\tilde{A}+\tilde{\chi})_{x}+2\tilde{\chi}_{x}-(z\tilde{A}_{x}A'+\tilde{\phi}_{x}\phi')]\\
+        &=-(z\tilde{A}'+3\tilde{A}+z\tilde{\chi}'+3\tilde{\chi})_{x}-2\tilde{\chi}_{x}+(z^3\tilde{A}_{x}(z\tilde{A}'+3\tilde{A})+\tilde{\phi}_{x}\phi')\\
+        z\tilde{\xi}'+3\tilde{\xi}&=\left(e^{A+\chi}(z\tilde{\xi}'+3\tilde{\xi})\right)e^{-A-\chi}
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        \mathrm{COM}&=z^4\frac{e^{A+\chi}}{4}(z\tilde{\xi}'+3\tilde{\xi})^2+z^2\tilde{\xi}_{x}-\frac{z^2(z\tilde{\xi}'+3\tilde{\xi})_{x}}{2}-z^4\frac{e^{-A-\chi}}{4}(2z^2\tilde{A}_x\tilde{\chi}_x+z^2\tilde{\chi}_{x}^2-\tilde{\phi}_x^2)\\
+        &\quad-z^3\frac{(e^{-A-\chi}(\tilde{A}+\tilde{\chi})_x)_{x}}{2}
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        \mathrm{COM}_s&=\frac{\mathrm{COM}}{z^2}\\
+        &=z^2\frac{e^{A+\chi}}{4}(z\tilde{\xi}'+3\tilde{\xi})^2+\tilde{\xi}_{x}-\frac{(z\tilde{\xi}'+3\tilde{\xi})_{x}}{2}-z^2\frac{e^{-A-\chi}}{4}(2z^2\tilde{A}_x\tilde{\chi}_x+z^2\tilde{\chi}_{x}^2-\tilde{\phi}_x^2)\\
+        &\quad-z\frac{(e^{-A-\chi}(\tilde{A}+\tilde{\chi})_x)_{x}}{2}
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        (\frac{1}{z^{3}}+\frac{\phi_1^2}{8z}+\tilde{f})^{\prime}&=\frac{L^{2}}{2z^{4}}e^{-\chi}V+\frac{\xi_{x}}{z^{3}}+\frac{\mathrm{COM}}{z^{2}}\\
+        \tilde{f}'&=(3+\frac{L^{2}}{2}e^{-\chi}V)\frac{1}{z^4}+\frac{\phi_1^2}{8z^2}+\tilde{\xi}_{x}+\mathrm{COM}_s
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        z(z^2\dot{\tilde{A}})^{\prime}&=z^2(z\dot{\tilde{A}}^{\prime}+2\dot{\tilde{A}})\\
+        &=\frac{z^{2}}{2}(\frac{fA^{\prime}-\xi A_{x}}{z^{2}})^{\prime}+\frac{(e^{-A-\chi}A_{x}-\xi A^{\prime})_{x}}{2}+\mathrm{COM}\\
+        z\dot{\tilde{A}}^{\prime}+2\dot{\tilde{A}}&=\frac{1}{2}(f(z\tilde{A}'+3\tilde{A})-z^4\tilde{\xi}\tilde{A}_{x})^{\prime}+\frac{z(e^{-A-\chi}\tilde{A}_{x}-\tilde{\xi} A^{\prime})_{x}}{2}+\mathrm{COM}_s
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        z(z\dot{\tilde{\phi}})^{\prime}&=z(z\dot{\tilde{\phi}}^{\prime}+\dot{\tilde{\phi}})\\
+        &=\frac{z^{2}}{2}(\frac{f\phi'-\xi\phi_{x}}{z^{2}})^{\prime}+\frac{(e^{-A-\chi}\phi_{x}-\xi\phi')_{x}}{2}-\frac{L^{2}}{2z^{2}}e^{-\chi}V_\phi\\
+        &=\frac{(f\phi'-\xi\phi_{x})'}{2}-\frac{f\phi'-\xi\phi_{x}}{z}+\frac{(e^{-A-\chi}\phi_{x}-\xi\phi')_{x}}{2}-\frac{L^{2}}{2z^{2}}e^{-\chi}V_\phi\\
+        z\dot{\tilde{\phi}}^{\prime}+\dot{\tilde{\phi}}&=\frac{z}{2}(\tilde{\phi}'+(\frac{\phi_1^2}{8}+z\tilde{f})\phi'-z^3\tilde{\xi}\tilde{\phi}_{x})^{\prime}+\frac{z}{2}(\frac{2\tilde{\phi}}{z}+\frac{\phi_1}{z^2})'+z\frac{(e^{-A-\chi}\tilde{\phi}_{x}-z\tilde{\xi}\phi')_{x}}{2}-\frac{L^{2}}{2z^{3}}e^{-\chi}V_\phi\\
+        &=\frac{z}{2}([\tilde{\phi}'+(\frac{\phi_1^2}{8}+z\tilde{f})\phi'-z^3\tilde{\xi}\tilde{\phi}_{x}]^{\prime}+(e^{-A-\chi}\tilde{\phi}_{x}-z\tilde{\xi}\phi')_{x})+\tilde{\phi}'-\frac{\tilde{\phi}}{z}-\frac{\phi_1}{z^2}-\frac{L^{2}}{2z^{3}}e^{-\chi}V_\phi
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    z\dot{\tilde{\chi}}'+3\dot{\tilde{\chi}}=\frac{1}{2}(z^3(z\tilde{A}'+3\tilde{A})(z\dot{\tilde{A}}'+3\dot{\tilde{A}})+z(z\tilde{\phi}'+2\tilde{\phi})(z\dot{\tilde{\phi}}'+2\dot{\tilde{\phi}})+(z\dot{\tilde{\phi}}'+2\dot{\tilde{\phi}})\phi_1)
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        (e^{A+\chi}(z\tilde{\xi}'+3\tilde{\xi}))_{v}&=-2(\tilde{f}_{x}+f\tilde{\chi}_{x})\\
+        &\quad-(2ze^{A+\chi}\tilde{\xi}\xi^{\prime}-(z\tilde{f}'+3\tilde{f})+f[z\tilde{A}'+3\tilde{A}+z\tilde{\chi}'+3\tilde{\chi}]+z^2\tilde{f}\frac{\phi_1^2}{4}-z[\dot{\tilde{A}}+\dot{\tilde{\chi}}])_{x}\\
+        &\quad+z\tilde{\xi}(e^{A+\chi}\xi^{\prime}+A_{x}+\chi_{x})_{x}-z\tilde{A}_{x}d_{n}A-\tilde{\phi}_{x}d_n\phi\\
+        (e^{A+\chi}(z\tilde{\xi}'+3\tilde{\xi}))_{v}&=e^{A+\chi}[z^3(z\tilde{\xi}'+3\tilde{\xi})(\dot{\tilde{A}}+\dot{\tilde{\chi}})+(z\dot{\tilde{\xi}}'+3\dot{\tilde{\xi}})]\\
+        z\dot{\tilde{\xi}}'+3\dot{\tilde{\xi}}&=e^{-A-\chi}(e^{A+\chi}(z\tilde{\xi}'+3\tilde{\xi}))_{v}-z^3(z\tilde{\xi}'+3\tilde{\xi})(\dot{\tilde{A}}+\dot{\tilde{\chi}})
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        \dot{\tilde{f}}&=\frac{z}{2}[(e^{-A-\chi}\tilde{f}_{x}-f'\tilde{\xi}+z^3e^{A+\chi}\tilde{\xi}^{2}\xi^{\prime}-\tilde{\xi}[d_{n}A+d_{n}\chi])_{x}-z^3\tilde{\xi}_x(\dot{\tilde{A}}+\dot{\tilde{\chi}})\\
+        &\quad-\dot{\tilde{A}}d_{n}A+z^2\tilde{\xi}(e^{A+\chi}(z\tilde{\xi}'+3\tilde{\xi}))_{v}]-f\dot{\tilde{\chi}}-\frac{1}{2}([f(z\tilde{\xi}'+3\tilde{\xi})+2\frac{d_{n}\xi}{z^2}]_x+\dot{\tilde{\phi}}d_n\phi)
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        (e^{A+\chi}(z\tilde{\xi}'+3\tilde{\xi}))_{v}'&=-(z\dot{\tilde{A}}'+3\dot{\tilde{A}}+z\dot{\tilde{\chi}}'+3\dot{\tilde{\chi}})_{x}-2\dot{\tilde{\chi}}_{x}\\
+        &\quad+(z^3\dot{\tilde{A}}_{x}(z\tilde{A}'+3\tilde{A})+z^3\tilde{A}_{x}(z\dot{\tilde{A}}'+3\dot{\tilde{A}})+\dot{\tilde{\phi}}_{x}\phi'+z\tilde{\phi}_{x}(z\dot{\tilde{\phi}}'+2\dot{\tilde\phi}))\\
+        z\dot{\tilde{\xi}}'+3\dot{\tilde{\xi}}&=e^{-A-\chi}(e^{A+\chi}(z\tilde{\xi}'+3\tilde{\xi}))_{v}-z^3(z\tilde{\xi}'+3\tilde{\xi})(\dot{\tilde{A}}+\dot{\tilde{\chi}})
+    \end{aligned}
+\end{equation}
+
+transforamtion
+
+\begin{equation}
+    X:=e^{-\chi}=1-\frac{\phi_1^2}{8}z^2+z^3\tilde{X}
+\end{equation}
+
+\begin{equation}
+    \frac{X'}{X}=-\frac{z}{4}(A'^2+\phi'^2)
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        X'&=-\frac{zX}{4}(A'^2+\phi'^2)\\
+        z^2\tilde{X}'+3z\tilde{X}-\frac{\phi_1^2}{4}&=-\frac{1}{4}(A'^2+\phi'^2)(1-\frac{\phi_1^2}{8}z^2+z^3\tilde{X})\\
+        z^2\tilde{X}'+3z\tilde{X}+\frac{z^3}{4}(A'^2+\phi'^2)\tilde{X}&=-\frac{1}{4}(A'^2+\phi'^2)(1-\frac{\phi_1^2}{8}z^2)+\frac{\phi_1^2}{4}\\
+        z^2\tilde{X}'+3z\tilde{X}+\frac{z^3}{4}(A'^2+\phi'^2)\tilde{X}&=-\frac{1}{4}((z^3\tilde{A}'+3z^2\tilde{A})^2+(z^2\tilde{\phi}'+2z\tilde{\phi}+\phi_1)^2)(1-\frac{\phi_1^2}{8}z^2)+\frac{\phi_1^2}{4}\\
+        z\tilde{X}'+3\tilde{X}+\frac{z^2}{4}(A'^2+\phi'^2)\tilde{X}&=-\frac{1}{4}(z^3(z\tilde{A}'+3\tilde{A})^2+z(z\tilde{\phi}'+2\tilde{\phi})^2+2(z\tilde{\phi}'+2\tilde{\phi})\phi_1+\frac{\phi_1^2}{z})\\
+        &\quad(1-\frac{\phi_1^2}{8}z^2)+\frac{\phi_1^2}{4z}\\
+        &=-\frac{1}{4}(z^3(z\tilde{A}'+3\tilde{A})^2+z(z\tilde{\phi}'+2\tilde{\phi})^2+2(z\tilde{\phi}'+2\tilde{\phi})\phi_1)(1-\frac{\phi_1^2}{8}z^2)\\
+        &\quad+\frac{\phi_1^4}{32}z\\
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+       V&=-6-phi^2+z^4\tilde{V}_\mathrm{cosh}\\
+       V&=-2\phi+z^3\tilde{V}_\mathrm{sinh}
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        \tilde{f}'&=(3+\frac{L^{2}}{2}XV)\frac{1}{z^4}+\frac{\phi_1^2}{8z^2}+\tilde{\xi}_{x}+\mathrm{COM}_s\\
+    \end{aligned}
+\end{equation}
+
+apparent horizon
+
+\begin{equation}
+    \tilde{f}|_h=\textcolor{red}{-}\frac{1}{h^2}\partial_{x'}(h^3\tilde{\xi}+h_{x}e^{-A-\chi})+\frac{h_{x}^2}{h^3}e^{-A-\chi}-\frac{1}{h^3}-\frac{\phi_1^2}{8h}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        A_0&=\xi'_{x'}-\left(h_xe^{-A-\chi}(A'+\chi')\right)_{x'}\textcolor{red}{+}\frac{f'}{h}\textcolor{red}{+}\frac{h_x^2}{h}e^{-A-\chi}(A'+\chi')\textcolor{red}{-}\frac{f-h_x^2 e^{-A-\chi}}{h^2}\\
+        A_1&=\xi'+(e^{-A-\chi})_{x'}+h_x(e^{-A-\chi})'+(\xi+h_x e^{-A-\chi})'\textcolor{red}{-}\frac{2h_x}{h}e^{-A-\chi}\\
+        &=(e^{-A-\chi})_{x'}+2(\xi+h_x e^{-A-\chi})'\textcolor{red}{-}\frac{2h_x}{h}e^{-A-\chi}\\
+        A_2&=e^{-A-\chi}\\
+        B&=(h^3\dot{\tilde{\xi}}-h_xe^{-A-\chi}h^3(\dot{\tilde{A}}+\dot{\tilde{\chi}}))_{x'}\textcolor{red}{+}\frac{h^3\dot{\tilde{f}}+h_x^2 e^{-A-\chi}h^3(\dot{\tilde{A}}+\dot{\tilde{\chi}})}{h}
+    \end{aligned}
+\end{equation}
+
+\subsubsection{adapted coordinate to fix the horizon}
+
+假设视界位于$z=h(v,x)$处，做坐标变换
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            z'&=\frac{z}{h}\\
+            v'&=v\\
+            x'&=x
+        \end{aligned}
+    \right.
+\end{equation}
+
+则$z=h\Leftrightarrow z'=1$，并且
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            dz'&=\frac{dz}{h}-\frac{z}{h^2}(\dot{h}dv+h_xdx)\\
+            dv'&=dv\\
+            dx'&=dx
+        \end{aligned}
+    \right.
+\end{equation}
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            \partial_z&=\frac{1}{h}\partial_{z'}\\
+            \partial_v&=\partial_{v'}-\frac{z}{h^2}\dot{h}\partial_{z'}=\partial_{v'}-\frac{z'}{h}\dot{h}\partial_{z'}=\partial_{v'}-z'\dot{h}\partial_z\\
+            \partial_x&=\partial_{x'}-\frac{z}{h^2}h_x\partial_{z'}=\partial_{x'}-\frac{z'}{h}h_x\partial_{z'}=\partial_{x'}-z'h_x\partial_z
+        \end{aligned}
+    \right.
+\end{equation}
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            \partial_{z'}&=h\partial_z\\
+            \partial_{v'}&=\partial_v+\frac{z}{h^2}\dot{h}\partial_{z'}=\partial_v+\frac{z'}{h}\dot{h}\partial_{z'}=\partial_v+z'\dot{h}\partial_z\\
+            \partial_{x'}&=\partial_x+\frac{z}{h^2}h_x\partial_{z'}=\partial_x+\frac{z'}{h}h_x\partial_{z'}=\partial_x+z'h_x\partial_z
+        \end{aligned}
+    \right.
+\end{equation}
+
+在解析上用$(v,z,x)$坐标，在数值上用$(v',z',x')$坐标，$z'$方向在[0,1]区间采点，$z'$方向和$x'$方向的求导矩阵分别对应$\partial_{z'}$和$\partial_{x'}$，RK4演化用的时间导数对应$\partial_{v'}$。而所有公式里出现的导数都要用$\partial_v$, $\partial_z$和$\partial_x$。
+
+因为$dz=hdz'+z'\dot{h}dv'+z'h_xdx'$，带撇坐标下的方程，其实等价于用如下度规推出的方程：
+\begin{equation}
+    ds^2=\frac{L^2}{(z'h)^2}(-[f(v,z,x)e^{-\chi(v,z,x)}-e^{A(v,z,x)}\xi(v,z,x)^2+2z'e^{-\chi}\dot{h}]dv'^2-2e^{-\chi}hdv'dz'-2(\xi e^A+z'e^{-\chi}h_x)dv'dx'+e^Adx'^2+e^{-A}dy^2)
+\end{equation}
+
+带撇坐标下的方程为：
+\begin{equation}
+    \chi_{z'}=\frac{z'}{4}(A_{z'}^2+\phi_{z'}^2)
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        \left(\frac{e^{A+\chi}}{z'^2}\xi_{z'}\right)_{z'}&=-\frac{h}{z'^2}(A+\chi)_{x'z'}-\frac{2h}{z'^3}\chi_{x'}+\frac{h}{z'^2}(A_{x'}A_{z'}+\phi_{x'}\phi_{z'})\\
+        &\quad+h_x((A+\chi)_{z'z'}/z'+(A+\chi)_{z'}/z'^2+2\chi_{z'}/z'^2-A_{z'}^2/z'-\phi_{z'}^2/z')\\
+        &=\frac{h}{z'^2}[-(A+\chi)_{x'z'}-\frac{2}{z'}\chi_{x'}+(A_{x'}A_{z'}+\phi_{x'}\phi_{z'})]\\
+        &\quad+\frac{h_x}{z'}[(A+\chi)_{z'z'}+(A-\chi)_{z'}/z']\\
+        \xi_{z'}&=\left(\frac{e^{A+\chi}}{z'^2}\xi_{z'}\right)\frac{z'^2}{e^{A+\chi}}
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        h^2\mathrm{COM}=\frac{e^{A+\chi}}{4}\xi_{z'}^{2}+\frac{h\xi_{x}}{z'}-\frac{h\xi_{xz'}}{2}-\frac{h^2e^{-A-\chi}}{4}(2A_x\chi_x+\chi_{x}^2-\phi_x^2)+\frac{h^2(e^{-A-\chi})_{xx}}{2}+h_x()
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        (\frac{f}{z'^{3}})_{z'}&=\frac{L^{2}}{2z'^{4}}e^{-\chi}V+\frac{h\xi_{x}}{z'^{3}}+\frac{h^2\mathrm{COM}}{z'^{2}}
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        z(\frac{\dot{A}}{z})^{\prime}&=\dot{A}^{\prime}-\frac{\dot{A}}{z}\\
+        &=\frac{z^{2}}{2}(\frac{fA^{\prime}-\xi A_{x}}{z^{2}})^{\prime}+\frac{(e^{-A-\chi}A_{x}-\xi A^{\prime})_{x}}{2}+\mathrm{COM}\\
+        &=\frac{(fA^{\prime}-\xi A_{x})'}{2}-\frac{fA^{\prime}-\xi A_{x}}{z}+\frac{(e^{-A-\chi}A_{x}-\xi A^{\prime})_{x}}{2}+\mathrm{COM}
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        z(\frac{\dot{\phi}}{z})^{\prime}&=\dot{\phi}^{\prime}-\frac{\dot{\phi}}{z}\\
+        &=\frac{z^{2}}{2}(\frac{f\phi'-\xi\phi_{x}}{z^{2}})^{\prime}+\frac{(e^{-A-\chi}\phi_{x}-\xi\phi')_{x}}{2}-\frac{L^{2}}{2z^{2}}e^{-\chi}V_\phi\\
+        &=\frac{(f\phi'-\xi\phi_{x})'}{2}-\frac{f\phi'-\xi\phi_{x}}{z}+\frac{(e^{-A-\chi}\phi_{x}-\xi\phi')_{x}}{2}-\frac{L^{2}}{2z^{2}}e^{-\chi}V_\phi
+    \end{aligned}
+\end{equation}
+
+\subsubsection{adapted coordinate to fix the horizon-2}
+
+假设视界位于$z=H(v,x)$处，做坐标变换
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            z'&=\frac{z_0}{H}z\\
+            v'&=v\\
+            x'&=x
+        \end{aligned}
+    \right.
+\end{equation}
+
+则$z=H\Leftrightarrow z'=z_0$。令$h=\frac{H}{z_0}$，则
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            z'&=\frac{z}{h}\\
+            v'&=v\\
+            x'&=x
+        \end{aligned}
+    \right.
+\end{equation}
+
+并且
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            dz'&=\frac{dz}{h}-\frac{z}{h^2}(\dot{h}dv+h_xdx)\\
+            dv'&=dv\\
+            dx'&=dx
+        \end{aligned}
+    \right.
+\end{equation}
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            \partial_z&=\frac{1}{h}\partial_{z'}\\
+            \partial_v&=\partial_{v'}-\frac{z}{h^2}\dot{h}\partial_{z'}=\partial_{v'}-\frac{z'}{h}\dot{h}\partial_{z'}=\partial_{v'}-z'\dot{h}\partial_z\\
+            \partial_x&=\partial_{x'}-\frac{z}{h^2}h_x\partial_{z'}=\partial_{x'}-\frac{z'}{h}h_x\partial_{z'}=\partial_{x'}-z'h_x\partial_z
+        \end{aligned}
+    \right.
+\end{equation}
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            \partial_{z'}&=h\partial_z\\
+            \partial_{v'}&=\partial_v+\frac{z}{h^2}\dot{h}\partial_{z'}=\partial_v+\frac{z'}{h}\dot{h}\partial_{z'}=\partial_v+z'\dot{h}\partial_z\\
+            \partial_{x'}&=\partial_x+\frac{z}{h^2}h_x\partial_{z'}=\partial_x+\frac{z'}{h}h_x\partial_{z'}=\partial_x+z'h_x\partial_z
+        \end{aligned}
+    \right.
+\end{equation}
+
+在解析上用$(v,z,x)$坐标，在数值上用$(v',z',x')$坐标，$z'$方向在[0,1]区间采点，$z'$方向和$x'$方向的求导矩阵分别对应$\partial_{z'}$和$\partial_{x'}$，RK4演化用的时间导数对应$\partial_{v'}$。而所有公式里出现的导数都要用$\partial_v$, $\partial_z$和$\partial_x$。
+
+与第一种adapted coordinate相比，需要注意的只有在使用视界条件以及求视界的时间演化的时候，此时真正的视界为$H$，并且
+\begin{equation}
+    \begin{aligned}
+        H&=z_0 h\\
+        H_x&=z_0 h_x\\
+        \dot{H}&=z_0 \dot{h}
+    \end{aligned}
+\end{equation}
+
+\subsubsection{general adapted coordinate}
+
+假设视界位于$z=h(v,x)$处，做坐标变换
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            z'&=F(v,z,x)\\
+            v'&=v\\
+            x'&=x
+        \end{aligned}
+    \right.
+\end{equation}
+
+则$z=h\Leftrightarrow z'=F(v,h(v,x),x)$，并且
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            dz'&=F'dz+\dot{F}dv+F_xdx\\
+            dv'&=dv\\
+            dx'&=dx
+        \end{aligned}
+    \right.
+\end{equation}
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            \partial_z&=F'\partial_{z'}\\
+            \partial_v&=\partial_{v'}+\dot{F}\partial_{z'}=\partial_{v'}+\frac{\dot{F}}{F'}\partial_z\\
+            \partial_x&=\partial_{x'}+F_x\partial_{z'}=\partial_{x'}+\frac{F_x}{F'}\partial_z
+        \end{aligned}
+    \right.
+\end{equation}
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            \partial_{z'}&=\frac{1}{F'}\partial_z\\
+            \partial_{v'}&=\partial_v-\dot{F}\partial_{z'}=\partial_v-\frac{\dot{F}}{F'}\partial_z\\
+            \partial_{x'}&=\partial_x-F_x\partial_{z'}=\partial_x-\frac{F_x}{F'}\partial_z
+        \end{aligned}
+    \right.
+\end{equation}
+
+在解析上用$(v,z,x)$坐标，在数值上用$(v',z',x')$坐标，$z'$方向在[0,1]区间采点，$z'$方向和$x'$方向的求导矩阵分别对应$\partial_{z'}$和$\partial_{x'}$，RK4演化用的时间导数对应$\partial_{v'}$。而所有公式里出现的导数都要用$\partial_v$, $\partial_z$和$\partial_x$。
+
+\subsubsection{horizon and horizon evolution}
+
+The apparent horizon $z=h(v,x)$:
+\begin{equation}\label{h_eq}
+    (\partial_{x}+h_{x}\partial_{z})(\xi+h_{x}e^{-A-\chi})=\frac{1}{h}(f-h_{x}^{2}e^{-A-\chi})
+\end{equation}
+
+with the fields $(f,\xi,A,\chi)$ understood as functions of $v, z=h(v,x)$ and $x$. Note that the above equation does not involve $\partial_{v}$, which means that the apparent horizon is completely determined by the spatial configuration of $(f,\xi,A,\chi)$ at a given instant $v$. Evolution of the apparent horizon:
+\begin{equation}\label{pv_h_eq}
+    \begin{aligned}
+        &\quad(\partial_{x}+h_{x}\partial_{z})([\partial_{v}+\dot{h}\partial_{z}]\xi+\dot{h}_{x}e^{-A-\chi}+h_{x}[\partial_{v}+\dot{h}\partial_{z}]e^{-A-\chi})+\dot{h}_{x}(\xi+h_{x}e^{-A-\chi})^{\prime}\\
+        &=\frac{1}{h}([\partial_{v}+\dot{h}\partial_{z}]f-2h_{x}\dot{h}_{x}e^{-A-\chi}-h_{x}^{2}[\partial_{v}+\dot{h}\partial_{z}]e^{-A-\chi})-h^{-2}\dot{h}(f-h_{x}^{2}e^{-A-\chi})
+    \end{aligned}
+\end{equation}
+
+在均匀情况退化为
+\begin{equation}
+    f(v,z=h,x)=f_h=0
+\end{equation}
+\begin{equation}
+    \dot{h}=-\frac{\dot{f}_h}{f'_h}
+\end{equation}
+\begin{equation}
+    \dot{f}_h=-\frac{h}{2}(\dot{A}_h^2+\dot{\phi}_h^2)
+\end{equation}
+（上式只对视界处成立，因为用到了$f_h=0$来化简）
+
+\eqref{h_eq}即为（注意在视界处$\partial_{x'}=\partial_x+h_x\partial_z$）
+\begin{equation}
+    \partial_{x'}(\xi+h_{x}e^{-A-\chi})-\frac{1}{h}(f-h_{x}^{2}e^{-A-\chi})=0
+\end{equation}
+
+亦即
+\begin{equation}
+    f=h\partial_{x'}(\xi+h_{x}e^{-A-\chi})+h_{x}^{2}e^{-A-\chi}
+\end{equation}
+
+
+或者展开得到（好像没必要）
+\begin{equation}
+    \begin{aligned}
+        0&=-\frac{f}{h}+\xi_x+h_x\xi'-e^{-A-\chi}[h_x(A_x+h_x A'+\chi_x+h_x\chi'-\frac{h_x}{h})-h_{xx}]\\
+        &=-\frac{f}{h}+\xi_{x'}-e^{-A-\chi}[h_x(A_{x'}+\chi_{x'}-\frac{h_x}{h})-h_{xx}]\\
+        &=-\frac{f}{h}+\xi_{x'}-e^{-A-\chi}(h_x[(A+\chi)_{x'}-\frac{h_x}{h}]-h_{xx})
+    \end{aligned}
+\end{equation}
+
+亦即
+\begin{equation}
+    f=h[\xi_{x'}-e^{-A-\chi}(h_x[(A+\chi)_{x'}-\frac{h_x}{h}]-h_{xx})]
+\end{equation}
+
+或者
+\begin{equation}
+    \partial_{x}(\xi+h_{x}e^{-A-\chi})+h_{x}\partial_{z}(\xi+h_{x}e^{-A-\chi})=\frac{1}{h}(f-h_{x}^{2}e^{-A-\chi})
+\end{equation}
+
+用\eqref{h_eq}消去\eqref{pv_h_eq}中的$h_{xx}$，即\eqref{pv_h_eq}+$(\partial_v+\dot{h}\partial_z)(A+\chi)$\eqref{h_eq}，得到
+\begin{equation}
+    A_0\dot{h}+A_1\dot{h}_x+A_2\dot{h}_{xx}+B=0
+\end{equation}
+
+其中
+\begin{equation}
+    \begin{aligned}
+        A_0&=(\frac{f}{h}-f')\frac{1}{h}+(A'+\chi')(\xi_x+h_x\xi'-\frac{f}{h})+\xi'_x+h_x\xi''-e^{-A-\chi}h_x[(A'+\chi')_x+h_x(A'+\chi')'+\frac{h_x}{h^{2}}]\\
+        &=(\frac{f}{h}-f')\frac{1}{h}+(A'+\chi')(\xi_{x'}-\frac{f}{h})+\xi'_{x'}-e^{-A-\chi}h_x[(A'+\chi')_{x'}+\frac{h_x}{h^{2}}]
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        A_1&=2\xi'-e^{-A-\chi}(A_x+3h_x A'+\chi_x+3h_x \chi'-\frac{2h_x}{h})\\
+        &=2\xi'-e^{-A-\chi}(A_{x'}+\chi_{x'}+2h_x A'+2h_x \chi'-\frac{2h_x}{h})\\
+        &=2\xi'-e^{-A-\chi}[(A+\chi)_{x'}+2h_x(A'+\chi'-\frac{1}{h})]
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    A_2=e^{-A-\chi}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        B&=-\frac{\dot{f}}{h}+(\dot{A}+\dot{\chi})(\xi_x+h_x\xi'-\frac{f}{h})+\dot{\xi}_x+h_x\dot{\xi}'-e^{-A-\chi}h_x[(\dot{A}+\dot{\chi})_x+h_x(\dot{A}+\dot{\chi})']\\
+        &=-\frac{\dot{f}}{h}+(\dot{A}+\dot{\chi})(\xi_{x'}-\frac{f}{h})+\dot{\xi}_{x'}-e^{-A-\chi}h_x(\dot{A}+\dot{\chi})_{x'}
+    \end{aligned}
+\end{equation}
+
+也可以直接从\eqref{pv_h_eq}+$(\partial_v+\dot{h}\partial_z)(A+\chi)$\eqref{h_eq}读出
+\begin{equation}
+    \begin{aligned}
+        A_0&=\xi'_{x'}+\left(h_x(e^{-A-\chi})'\right)_{x'}-\frac{f'}{h}+\frac{h_x^2}{h}(e^{-A-\chi})'+\frac{f-h_x^2 e^{-A-\chi}}{h^2}\\
+        &\quad+(A+\chi)'[\partial_{x'}(\xi+h_{x}e^{-A-\chi})-\frac{1}{h}(f-h_{x}^{2}e^{-A-\chi})]\\
+        &=\xi'_{x'}-(A'+\chi')_{x'}h_x e^{-A-\chi}-\frac{f'}{h}+\frac{f-h_x^2 e^{-A-\chi}}{h^2}\\
+        &\quad+(A'+\chi')(\xi_{x'}-\frac{f}{h})\\
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        A_1&=\xi'+(e^{-A-\chi})_{x'}+h_x(e^{-A-\chi})'+(\xi+h_x e^{-A-\chi})'+\frac{2h_x}{h}e^{-A-\chi}\\
+        &=(e^{-A-\chi})_{x'}+2(\xi+h_x e^{-A-\chi})'+\frac{2h_x}{h}e^{-A-\chi}
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    A_2=e^{-A-\chi}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        B&=(\dot{\xi}+h_x\partial_v(e^{-A-\chi}))_{x'}-\frac{\dot{f}-h_x^2\partial_v(e^{-A-\chi})}{h}\\
+        &\quad+(\dot{A}+\dot{\chi})[\partial_{x'}(\xi+h_{x}e^{-A-\chi})-\frac{1}{h}(f-h_{x}^{2}e^{-A-\chi})]\\
+        &=\dot{\xi}_{x'}-(\dot{A}+\dot{\chi})_{x'}h_xe^{-A-\chi}-\frac{\dot{f}}{h}\\
+        &\quad+(\dot{A}+\dot{\chi})(\xi_{x'}-\frac{f}{h})
+    \end{aligned}
+\end{equation}
+
+如果直接用\eqref{pv_h_eq}，则
+\begin{equation}
+    \begin{aligned}
+        A_0&=\xi'_{x'}+\left(h_x(e^{-A-\chi})'\right)_{x'}-\frac{f'}{h}+\frac{h_x^2}{h}(e^{-A-\chi})'+\frac{f-h_x^2 e^{-A-\chi}}{h^2}\\
+        A_1&=\xi'+(e^{-A-\chi})_{x'}+h_x(e^{-A-\chi})'+(\xi+h_x e^{-A-\chi})'+\frac{2h_x}{h}e^{-A-\chi}\\
+        &=(e^{-A-\chi})_{x'}+2(\xi+h_x e^{-A-\chi})'+\frac{2h_x}{h}e^{-A-\chi}\\
+        A_2&=e^{-A-\chi}\\
+        B&=(\dot{\xi}+h_x\partial_v(e^{-A-\chi}))_{x'}-\frac{\dot{f}-h_x^2\partial_v(e^{-A-\chi})}{h}
+    \end{aligned}
+\end{equation}
+
+\subsubsection{apparent horizon}
+
+第一种理解：
+
+in time-slice $v=v_0$, apparent horizon $\Phi(z,x):=z-h(x)$, the normal vector
+\begin{equation}
+    k_i\sim\partial_i\Phi=(1,-h_x,0)
+\end{equation}
+
+上式中的法矢量是在time-slice $v=v_0$上定义的，把它延拓到四维时空
+\begin{equation}
+    k_\mu=\lambda(v,z,x,y)(k_0,1,-h_x,0)
+\end{equation}
+
+if $k_\mu$ is null
+\begin{equation}
+    k^\mu k_\mu=0\Rightarrow k_0=\xi h_x + \frac{f}{2} + \frac{e^{- A - \chi} h_x^2}{2}
+\end{equation}
+
+第二种理解：
+
+\textcolor{red}{这种理解是错的！这相当于要求了所有时刻的表观视界堆叠起来的余1维超曲面是类光的，但它应该是类空的。}
+
+assuming the hypersurface of apparent horizon is $\Phi(z,x):=z-h(v,x)$, so the normal vector (or the congruence may be defined as)
+\begin{equation}
+    k_\mu\sim\partial_\mu\Phi=(-\dot{h},1,-h_x,0)
+\end{equation}
+
+let
+\begin{equation}
+    k_\mu=\lambda(v,z,x,y)\partial_\mu\Phi=\lambda(v,z,x,y)(-\dot{h},1,-h_x,0)
+\end{equation}
+
+Requiring that $k$ be null fixes the time derivative $\partial_v\Phi$ in terms of spatial derivatives of $\Phi$, such that
+\begin{equation}
+    k^\mu k_\mu=0\Rightarrow\dot{h}=- \xi h_x - \frac{f}{2} - \frac{e^{- A - \chi} h_x^2}{2}
+\end{equation}
+
+用这种理解来进行后续推导的话，得到的表观视界条件相同，而测地线条件中会出现$\dot{h}_x$项，如果用上式得到的$\dot{h}$来化简会得到
+\begin{equation}
+    0=2 \xi' h_x + f' - e^{-A-\chi} A' h_x^2 - e^{-A-\chi} \chi' h_x^2
+\end{equation}
+
+方法1：
+
+Requiring the congruence to satisfy the (affinely parameterized) geodesic equation $k^\alpha k_{\beta;\alpha}=0$ determines the time derivative of the multiplier function $\lambda$ in terms of its spatial derivatives.
+
+$v$分量由$z$和$x$分量组合而来，$z$分量给出$\dot{\lambda}$，而$x$分量给出测地线条件。
+\begin{equation}
+    \dot{\lambda}=\lambda \xi' h_x + \frac{\lambda f'}{2} - \frac{\lambda e^{-A-\chi} A' h_x^2}{2} - \frac{\lambda e^{-A-\chi} \chi' h_x^2}{2} - \xi \lambda_x + \frac{f \lambda'}{2} - e^{-A-\chi} \lambda_x h_x - \frac{e^{-A-\chi} \lambda' h_x^2}{2}
+\end{equation}
+
+and the geodesic condition
+\begin{equation}
+    0=\xi h_{xx} + \xi_x h_x + \xi' h_x^2 + \frac{f_x}{2} + \frac{f' h_x}{2} + \dot{h}_x - \frac{e^{-A-\chi} A_x h_x^2}{2} - \frac{e^{-A-\chi} A' h_x^3}{2} - \frac{e^{-A-\chi} \chi_x h_x^2}{2} - \frac{e^{-A-\chi} \chi' h_x^3}{2} + e^{-A-\chi} h_x h_{xx}
+\end{equation}
+
+Given these time derivatives, one may then compute the expansion via $\theta=\nabla\cdot k$.
+\begin{equation}
+    \begin{aligned}
+        0&=\theta=\nabla_\mu k^\mu\Rightarrow\\
+        0&=\xi_x + \xi' h_x - e^{-A-\chi} A_x h_x - e^{-A-\chi} A' h_x^2 - e^{-A-\chi} \chi_x h_x - e^{-A-\chi} \chi' h_x^2 + e^{-A-\chi} h_{xx} + \frac{f}{h} - \frac{e^{-A-\chi} h_x^2}{h}
+    \end{aligned}
+\end{equation}
+
+i.e.
+\begin{equation}
+    (\partial_{x}+h_{x}\partial_{z})(\xi+h_{x}e^{-A-\chi})=\textcolor{red}{-}\frac{1}{h}(f-h_{x}^{2}e^{-A-\chi})
+\end{equation}
+
+方法2
+
+取$\lambda=1$，则测地线方程应该有最一般的形式，而不一定是仿射参数仿射参数下的测地线方程（如果适当的选取$\lambda$，可以使得仿射参数下的测地线方程$k^\mu\nabla_\mu k_\nu=0$成立），则
+\begin{equation}
+    k^\mu\nabla_\mu k_\nu-\kappa k_\nu=0
+\end{equation}
+
+expansion
+\begin{equation}
+    \hat{\theta}=\theta-\kappa=\nabla_\mu k^\mu-\kappa=0
+\end{equation}
+
+so
+\begin{equation}
+    k^\mu\nabla_\mu k_\nu-(\nabla_\mu k^\mu)k_\nu=0
+\end{equation}
+
+$v$分量由$z$和$x$分量组合而来，$z$分量给出表观视界条件，而$x$分量给出测地线条件。得到的结果和方法1一样（注意测地线条件可以利用表观视界条件来化简）。
+
+总结：
+
+测地线条件
+\begin{equation}
+    \begin{aligned}
+        0&=2 \xi h_{xx} + \xi_x h_x + \xi' h_x^2 + f_x + f' h_x + e^{-A-\chi} h_x h_{xx} - \frac{f h_x}{h} + \frac{e^{-A-\chi} h_x^3}{h}\\
+        &=(\partial_x+h_x\partial_z)(\xi h_x+f) + \xi h_{xx} + e^{-A-\chi} h_x h_{xx} - \frac{f h_x}{h} + \frac{e^{-A-\chi} h_x^3}{h}\\
+    \end{aligned}
+\end{equation}
+
+表观视界条件
+\begin{equation}
+    (\partial_{x}+h_{x}\partial_{z})(\xi+h_{x}e^{-A-\chi})=\textcolor{red}{-}\frac{1}{h}(f-h_{x}^{2}e^{-A-\chi})
+\end{equation}
+
+\begin{equation}
+    f|_{h}=\textcolor{red}{-}h\partial_{x'}(\xi+h_{x}e^{-A-\chi})+h_{x}^{2}e^{-A-\chi}
+\end{equation}
+
+\begin{equation}
+    \xi_x + \xi' h_x - e^{-A-\chi} A_x h_x - e^{-A-\chi} A' h_x^2 - e^{-A-\chi} \chi_x h_x - e^{-A-\chi} \chi' h_x^2 + e^{-A-\chi} h_{xx} + \frac{f}{h} - \frac{e^{-A-\chi} h_x^2}{h}=0
+\end{equation}
+
+对$h(x)$变分
+\begin{equation}
+    \begin{aligned}
+        0&=(\partial_{x}+h_{x}\partial_{z})\delta(\xi+h_{x}e^{-A-\chi})+(\delta h_{x})\partial_{z}(\xi+h_{x}e^{-A-\chi})+\delta[\frac{1}{h}(f-h_{x}^{2}e^{-A-\chi})]\\
+        &=(\partial_{x}+h_{x}\partial_{z})(\xi'\delta h+(\delta h_{x})e^{-A-\chi}+h_{x}(e^{-A-\chi})'\delta h)+(\delta h_{x})\partial_{z}(\xi+h_{x}e^{-A-\chi})\\
+        &\quad+\delta(\frac{1}{h})(f-h_{x}^{2}e^{-A-\chi})+\frac{1}{h}\delta(f-h_{x}^{2}e^{-A-\chi})\\
+        &=(\partial_{x}+h_{x}\partial_{z})(\xi'\delta h+(\delta h_{x})e^{-A-\chi}+h_{x}(e^{-A-\chi})'\delta h)+(\delta h_{x})\partial_{z}(\xi+h_{x}e^{-A-\chi})\\
+        &\quad-\frac{1}{h^2}(f-h_{x}^{2}e^{-A-\chi})\delta h+\frac{1}{h}(f'\delta h-2h_{x}e^{-A-\chi}\delta h_x-h_{x}^{2}(e^{-A-\chi})'\delta h)\\
+        &=\partial_{x}[\xi'\delta h+(\delta h_{x})e^{-A-\chi}+h_{x}(e^{-A-\chi})'\delta h]+h_{x}\partial_{z}[\xi'\delta h+(\delta h_{x})e^{-A-\chi}+h_{x}(e^{-A-\chi})'\delta h]+(\delta h_{x})\partial_{z}(\xi+h_{x}e^{-A-\chi})\\
+        &\quad-\frac{1}{h^2}(f-h_{x}^{2}e^{-A-\chi})\delta h+\frac{1}{h}(f'\delta h-2h_{x}e^{-A-\chi}\delta h_x-h_{x}^{2}(e^{-A-\chi})'\delta h)\\
+        &=\delta h[(\partial_{x}+h_{x}\partial_{z})(\xi'+h_{x}(e^{-A-\chi})')-\frac{1}{h^2}(f-h_{x}^{2}e^{-A-\chi})+\frac{1}{h}(f'-h_{x}^{2}(e^{-A-\chi})')]\\
+        &\quad+\delta h_x[(\xi'+(e^{-A-\chi})_x+h_{x}(e^{-A-\chi})')+h_{x}(e^{-A-\chi})'+\partial_{z}(\xi+h_{x}e^{-A-\chi})-\frac{2h_{x}e^{-A-\chi}}{h}]\\
+        &\quad+\delta h_{xx}e^{-A-\chi}
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    V_0\delta h+V_1\delta h_x+V_2\delta h_{xx}=0
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        V_0&=- \frac{f}{h^{2}} + \frac{e^{-A-\chi} h_x^{2}}{h^{2}}\\
+        V_1&=\xi' - e^{-A-\chi} A_x - 2 e^{-A-\chi} A' h_x - e^{-A-\chi} \chi_x - 2 e^{-A-\chi} \chi' h_x - \frac{2 e^{-A-\chi} h_x}{h}\\
+        &=\xi' + (e^{-A-\chi})_x + 2 (e^{-A-\chi})' h_x - \frac{2 e^{-A-\chi} h_x}{h}\\
+        V_2&=e^{-A-\chi}\\
+    \end{aligned}
+\end{equation}
+
+视界的演化
+\begin{equation}
+    \begin{aligned}
+        &\quad(\partial_{x}+h_{x}\partial_{z})([\partial_{v}+\dot{h}\partial_{z}]\xi+\dot{h}_{x}e^{-A-\chi}+h_{x}[\partial_{v}+\dot{h}\partial_{z}]e^{-A-\chi})+\dot{h}_{x}(\xi+h_{x}e^{-A-\chi})^{\prime}\\
+        &=\textcolor{red}{-}\frac{1}{h}([\partial_{v}+\dot{h}\partial_{z}]f-2h_{x}\dot{h}_{x}e^{-A-\chi}-h_{x}^{2}[\partial_{v}+\dot{h}\partial_{z}]e^{-A-\chi})\textcolor{red}{+}h^{-2}\dot{h}(f-h_{x}^{2}e^{-A-\chi})
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    A_0\dot{h}+A_1\dot{h}_x+A_2\dot{h}_{xx}+B=0
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        A_0&=\xi'_{x'}+\left(h_x(e^{-A-\chi})'\right)_{x'}\textcolor{red}{+}\frac{f'}{h}\textcolor{red}{-}\frac{h_x^2}{h}(e^{-A-\chi})'\textcolor{red}{-}\frac{f-h_x^2 e^{-A-\chi}}{h^2}\\
+        &=(\xi+h_xe^{-A-\chi})'_{x'}\textcolor{red}{+}\frac{f'}{h}\textcolor{red}{-}\frac{h_x^2}{h}(e^{-A-\chi})'\textcolor{red}{-}\frac{f-h_x^2 e^{-A-\chi}}{h^2}\\
+        A_1&=\xi'+(e^{-A-\chi})_{x'}+h_x(e^{-A-\chi})'+(\xi+h_x e^{-A-\chi})'\textcolor{red}{-}\frac{2h_x}{h}e^{-A-\chi}\\
+        &=(e^{-A-\chi})_{x'}+2(\xi+h_x e^{-A-\chi})'\textcolor{red}{-}\frac{2h_x}{h}e^{-A-\chi}\\
+        A_2&=e^{-A-\chi}\\
+        B&=(\dot{\xi}+h_x\partial_v(e^{-A-\chi}))_{x'}\textcolor{red}{+}\frac{\dot{f}-h_x^2\partial_v(e^{-A-\chi})}{h}
+    \end{aligned}
+\end{equation}
+
+\subsubsection{evolution procedure}
+
+初值：$A$,$\phi$,$\xi_3$,$f_3$
+
+1. $A,\phi\rightarrow\chi'\rightarrow\chi$，边界条件为$\chi|_B=0$
+
+2. $A,\phi,\chi\rightarrow\left(\frac{e^{A+\chi}}{z^2}\xi'\right)'\rightarrow\left(\frac{e^{A+\chi}}{z^2}\xi'\right)$，边界条件为$\left(\frac{e^{A+\chi}}{z^2}\xi'\right)|_B=\frac{e^{A+\chi}\xi'''}{2}|_B=3e^{A+\chi}|_B\xi_3$
+
+$\left(\frac{e^{A+\chi}}{z^2}\xi'\right)\rightarrow\xi'\rightarrow\xi$，边界条件为$\xi|_B=0$
+
+3. $A,\phi,\chi,\xi\rightarrow\tilde{f}'\rightarrow\tilde{f}$，边界条件为$\tilde{f}'|_B=f_3$
+
+$\tilde{f}\rightarrow f=1+z^2\tilde{f}$
+\begin{equation}
+    \begin{aligned}
+        (\frac{1+z^2\tilde{f}}{z^{3}})^{\prime}&=\frac{\xi_{x}}{z^{3}}+\frac{L^{2}}{2z^{4}}e^{-\chi}V+\frac{\mathrm{COM}}{z^{2}}\\
+        z(\frac{\tilde{f}}{z})^{\prime}&=\tilde{f}'-\frac{\tilde
+        {f}}{z}\\
+        &=\frac{\xi_{x}}{z^2}+\frac{1}{z^3}(3+\frac{L^{2}}{2}e^{-\chi}V)+\frac{\mathrm{COM}}{z}
+    \end{aligned}
+\end{equation}
+
+$3'$. $A,\phi,\chi,\xi\rightarrow f'\rightarrow f$，边界条件为$f|_H=(h\partial_{x'}(\xi+h_{x}e^{-A-\chi})+h_{x}^{2}e^{-A-\chi})|_H$
+\begin{equation}
+    \begin{aligned}
+        (\frac{f}{z^{3}})^{\prime}&=\frac{L^{2}}{2z^{4}}e^{-\chi}V+\frac{\xi_{x}}{z^{3}}+\frac{\mathrm{COM}}{z^{2}}\\
+        zf'-3f&=\frac{L^{2}}{2}e^{-\chi}V+z\xi_{x}+z^2\mathrm{COM}\\
+        &=\frac{L^{2}}{2}e^{-\chi}V+2z\xi_{x}+z^2(\mathrm{COM}-\frac{\xi_x}{z})\\
+        &=\frac{L^{2}}{2}e^{-\chi}V+2z\xi_{x}+z^2\mathrm{COM}_f\\
+        \mathrm{COM}_f&=\mathrm{COM}-\frac{\xi_x}{z}\\
+        &=\frac{e^{A+\chi}}{4}\xi^{\prime2}-\frac{\xi_{x}^{\prime}}{2}-\frac{e^{-A-\chi}}{4}(2A_x\chi_x+\chi_{x}^2-\phi_x^2)+\frac{(e^{-A-\chi})_{xx}}{2}
+    \end{aligned}
+\end{equation}
+
+4. $A,\phi,\chi,\xi,f\rightarrow \dot{A}'\rightarrow \dot{A}$，边界条件为$\dot{A}'|_B=0$
+
+5. $A,\phi,\chi,\xi,f\rightarrow \dot{\phi}'\rightarrow \dot{\phi}$，边界条件为$\dot{\phi}'|_B=0$
+
+如果要固定视界，还需要提供$h$的初值，并且需要计算$\dot{h}$：
+
+6.$\rightarrow\dot{\chi}\rightarrow\dot{\xi}\rightarrow\dot{f}\rightarrow\dot{h}$
+
+\subsubsection{evolution result}
+
+\textbf{跟演化有关的因素:}
+
+\begin{itemize}
+    \item 初值的选取：优先考虑视界在1的初值，因此选了source=1.5，具有spinodal不稳定性
+    \item 微扰形式：在$x$方向周期为$l$
+    
+    类似于高斯波包的微扰，可以保证各个模式的微扰都有：
+    \begin{equation}
+        \delta\phi=0.1z^2(1-z^2)\exp[-10\cos^2(\frac{x}{l}\pi)]
+    \end{equation}
+    
+    正弦微扰：
+    \begin{equation}
+        \delta\phi=0.1z^2(1-z^2)\sin(\frac{2x}{l}\pi)
+    \end{equation}
+    
+    微扰形式会影响末态构型，不过对程序稳定性影响不大
+    \item 径向方向采点个数$N$
+    \item $x$方向区间长度$l$
+    \item $x$方向采点个数$M$
+    
+    总的来说，$x$方向网格越细，混叠现象越严重，锯齿越明显，程序崩得越快
+
+    可能不一定，见后面
+    \item 时间步长$dt$：满足CFL条件
+    \item 方程上的细节
+    \begin{itemize}
+        \item 提到高阶：测试了$A$和$\phi$再提一阶，让导数算符里没有发散，不过常数项部分仍然有发散，影响不大
+        \item 分开算（symbol转numeric）还是合起来算：之前测试会导致崩与不崩，换了初值之后又没复现出来
+        \item 上面两条可能与提到高阶有关，最新测试，把所有场都提到最高阶，不固定演化会崩，视界往外走的地方会长出尖，猜测是因为没有涵盖视界导致的崩溃。而之前的代码能运行是因为运气好，两种误差刚好抵消，勉强能达到末态，但其实误差很大
+        \item 对$f$求导用$(1+z^2\tilde{f})'$还是$2z\tilde{f}+z^2\tilde{f}'$：之前测试会导致不崩与崩，换了初值之后又没复现出来
+        \item $x$方向的二阶求导矩阵：用解析表达式还是一阶求导矩阵的平方：之前测试会导致崩与不崩，换了初值之后又没复现出来
+        
+        按理来说，对于奇数采点，两者相等；对于偶数采点，两者相差一个正负交替的常数，但是作用到函数之后得到的结果相同（跟函数的光滑性有关）
+    \end{itemize}
+    \item 是否固定视界：不管是物理上还是数值上，都是合理的，而且从均匀超辐射的结果来看，固定视界确实可以提高稳定性并降低误差，而且使用视界边界条件效果是最好的，可以跑到q=100
+    \item $f$用视界边界条件还是能量边界条件：从均匀超辐射的结果来看，使用视界边界条件效果是最好的，可以跑到q=100
+\end{itemize}
+
+\textbf{均匀情况测试：$\phi[0]=1.5z$，给定能量，动态收敛到一个静态解}
+
+\begin{itemize}
+    \item 不固定视界+能量边界条件：work
+    \item 固定视界+能量边界条件：work，不过如果收敛之后还一直跑的话，混叠误差也会积累起来
+    \item 固定视界+视界边界条件：崩溃
+    
+    把$x$方向关了（也就是用退化的公式）可以work
+
+    崩的时候看$h$和其他几个场，都有明显的锯齿，哪怕是本来应该恒等于零的$A$和$\xi$，也出现了比较大的锯齿
+
+    $x$方向网格越细，崩得越快（如果取$M=1$就可以work，不过这等价于是直接把$x$方向关了）
+
+    和$M$的关系好像没那么直接，比较小的时候要看情况，而比较大之后，似乎和他无关了
+
+    不过空间长度确实是越长就崩得越慢（但其实它发生相分离的时间也延后了）
+
+    $N$越大崩的也越快，但是应该没那么敏感
+    
+    可以确保视界处的边界条件没错，而且换成f=0也没有改善（会缓解），猜测是pvf有问题，因为用-pvf/pzf是崩的最快的，用矩阵求逆求pvh反而没那么快崩。但是把f[0]=0和pvf/pzf一起用，就可以work
+
+    计算结果和symbol转numeric的结果一样，基本排除是公式输错
+
+    排除了是h operator取逆的问题，它确实是可逆的，一直都满足相乘等于单位矩阵的条件，说明周期性边界条件应该够了，不需要再添加边界条件
+
+    关掉pvh，work
+
+    关掉pvA，可以缓解
+
+    关掉xi，即令xi一直=0，反而加剧
+
+    同时关掉A和xi，work
+\end{itemize}
+
+\textbf{相分离测试：}
+
+\begin{itemize}
+    \item 不固定视界+能量边界条件：某些参数下可以演化到稳定末态，但是误差是O(0.1)。得到的结果f还算光滑，但是对x求导就有锯齿了。对N很敏感，测试结果显示，总体来说N取奇数就会崩，N取偶数就可以
+    
+    相分离发生时误差最大，在0.4左右，末态时误差在0.1的量级
+    在$z$方向，误差都是越原理边界越大，猜测是视界以内的部分误差大。而且在某一个$x$处相对更大一些，猜测是那个点的视界出现在了计算域的外面
+    在$x$方向呈锯齿分布，猜测是混叠现象导致的，不过在这种方案下还没占主导地位，不至于让程序崩掉
+    
+    f3明明加了边界条件，误差也很大，可能是三阶导数本来就不精确
+
+    径向方向采点个数$N$：随N变化不收敛，有的会崩有的不会崩，总体来说是偶数不崩，奇数崩
+
+    $x$方向区间长度$l$和$x$方向采点个数$M$：网格太细的话，混叠越多，锯齿越明显，甚至崩掉；网格太粗的话，函数也会不怎么连续
+    \item 固定视界+能量边界条件：大概是在发生相分离的时候崩
+    
+    锯齿，混叠
+    \item 固定视界+视界边界条件：崩得更快
+    
+    锯齿，混叠
+\end{itemize}
+
+\textbf{其它的一些尝试：}
+
+\begin{itemize}
+    \item 滤波：在每一个时间步对最终结果滤波，会缓解，崩得会慢一点。砍掉1/2效果又要比砍掉1/3好
+    \item 用第二套方案，全用演化方程：均匀构型也崩得很快，说明混叠误差积累主要发生在求pvchi,pvxi,pvf,pvh的过程中，而用约束方程的话不会积累太大的误差
+    \begin{itemize}
+        \item chi单独用约束方程还是演化方程，基本没变化
+        \item xi单独用约束方程，会好一点
+        \item f单独用约束方程，会好一点
+        \item xi和f都用约束方程，work
+        \item 用约束方程求pvxi，work。说明问题出在pvxi
+        \item 用约束方程求pvf，有问题。进一步说明问题出在pvxi
+    \end{itemize}
+    \item 每五个时间步就能用五点差分得到一个pvprimechi，然后和pvchi相减，就能得到pvh，每两步用一次这个方法修正pvh：没有改善，而且两种方法得到的pvh相差比较多，但从公式上看两者似乎是等价的
+    \item 在$[0,\frac{2}{1+\cos(\frac{10}\pi{N-1})}]$采点，第11个点恰好是1，然后把视界固定在1
+    
+    没有太大影响，崩的时间也基本没变化
+    \item 把$z'=1$固定成$f$的零点，而不是表观视界：不管是能量边界条件还是视界边界条件，对均匀构型可以work，对相分离情况会崩。视界边界条件崩得会慢很多，而能量边界条件崩得更快了。
+    \item 通过对xi和f的约束方程求时间导数来求pvxi和pvf，有很大改善，第二套演化方案也可以work很好了
+    \item 把五个场都提到了最高阶，除了标量势外，所有发散都消了，运行的时候误差似乎小了，但不管N取什么值都出现了之前N取奇数出现的尖，导致崩溃。xi的演化方程求的pvxi仍然会让演化很快崩溃
+    \item xi和f的约束方程来求pvxi和pvf之后，把$z'=1$固定成$f$的零点，表现得不错，崩的时候都没出现锯齿，很光滑，这个崩溃可能是没覆盖住视界造成的，而不是混叠。但是如果没覆盖住视界再强行演化几步（能量边界条件会比视界边界条件多演化几步），就会出现严重的锯齿
+    \item 在此基础上把采点域扩大，似乎有一点变化，但崩的时间更快一点
+    \item 在xi或f的两边都施加边界条件，会崩得很快
+\end{itemize}
+
+\begin{itemize}
+    \item 只要用到演化方程求出的pvxi，不管是用来求演化xi还是演化h，就会有积累得很快的误差
+\end{itemize}
+
+\subsubsection{PPT}
+
+假设视界位于$z=h(v,x)$处，做坐标变换
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            z'&=\frac{z}{h}\\
+            v'&=v\\
+            x'&=x
+        \end{aligned}
+    \right.
+    \Rightarrow
+    \left\{
+        \begin{aligned}
+            \partial_z&=\frac{1}{h}\partial_z'\\
+            \partial_v&=\partial_{v'}-z'\dot{h}\partial_z\\
+            \partial_x&=\partial_{x'}-z'h_x\partial_z
+        \end{aligned}
+    \right.
+\end{equation}
+
+则$z=h\Leftrightarrow z'=1$，并且
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            \partial_z&=\frac{1}{h}\partial_z'\\
+            \partial_v&=\partial_{v'}-z'\dot{h}\partial_z\\
+            \partial_x&=\partial_{x'}-z'h_x\partial_z
+        \end{aligned}
+    \right.
+\end{equation}
+
+视界位置
+\begin{equation}
+    (\partial_{x}+h_{x}\partial_{z})(\xi+h_{x}e^{-A-\chi})=\frac{1}{h}(f-h_{x}^{2}e^{-A-\chi})
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        &\quad(\partial_{x}+h_{x}\partial_{z})([\partial_{v}+\dot{h}\partial_{z}]\xi+\dot{h}_{x}e^{-A-\chi}+h_{x}[\partial_{v}+\dot{h}\partial_{z}]e^{-A-\chi})+\dot{h}_{x}(\xi+h_{x}e^{-A-\chi})^{\prime}\\
+        &=\frac{1}{h}([\partial_{v}+\dot{h}\partial_{z}]f-2h_{x}\dot{h}_{x}e^{-A-\chi}-h_{x}^{2}[\partial_{v}+\dot{h}\partial_{z}]e^{-A-\chi})-h^{-2}\dot{h}(f-h_{x}^{2}e^{-A-\chi})
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    A_0\dot{h}+A_1\dot{h}_x+A_2\dot{h}_{xx}+B=0
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        A_0&=(\frac{f}{h}-f')\frac{1}{h}+(A'+\chi')(\xi_{x'}-\frac{f}{h})+\xi'_{x'}-e^{-A-\chi}h_x[(A'+\chi')_{x'}+\frac{h_x}{h^{2}}]\\
+        A_1&=(e^{-A-\chi})_{x'}+2(\xi+h_x e^{-A-\chi})'+\frac{2h_x}{h}e^{-A-\chi}\\
+        A_2&=e^{-A-\chi}\\
+        B&=-\frac{\dot{f}}{h}+(\dot{A}+\dot{\chi})(\xi_{x'}-\frac{f}{h})+\dot{\xi}_{x'}-e^{-A-\chi}h_x(\dot{A}+\dot{\chi})_{x'}
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    f|_h=h\partial_{x'}(\xi+h_{x}e^{-A-\chi})+h_{x}^{2}e^{-A-\chi}
+\end{equation}
+
+\subsection{inhomogeneous case with spherical topology}
+
+\subsubsection{equation}
+
+The model is same with the case in planar topology, and the BS coordinate
+\begin{equation}
+    ds^2=\frac{L^2}{z^2}(-[f(v,z,\theta)e^{-\chi(v,z,\theta)}-e^{A(v,z,\theta)}\xi(v,z,\theta)^2]dv^2-2e^{-\chi}dvdz-2\xi e^Advd\theta+e^Ad\theta^2+e^{-A}\sin^2\theta d\varphi^2)
+\end{equation}
+
+$E_{zz}$ gives the constraint equation of $\chi$:
+\begin{equation}
+    \chi'=\frac{z}{4}(A'^2+\phi'^2)
+\end{equation}
+
+$E_{z\theta}$ gives the constraint equation of $\xi$:
+\begin{equation}
+    \begin{aligned}
+        \left(\frac{e^{A+\chi}}{z^2}\xi'\right)'&=-\frac{1}{z^{2}}[(A+\chi)^{\prime}_{\theta}+\frac{2\chi_{\theta}}{z}-(A^{\prime}A_{\theta}+\phi'\phi_{\theta})\textcolor{red}{+2\cot\theta A'}]\\
+        \xi'&=\left(\frac{e^{A+\chi}}{z^2}\xi'\right)\frac{z^2}{e^{A+\chi}}
+    \end{aligned}
+\end{equation}
+
+$E_{vz}-\frac{f}{2}E_{zz}+\xi E_{zx}$ gives the constraint equation of $f$:
+\begin{equation}
+    \begin{aligned}
+        \mathrm{COM}&=\frac{e^{A+\chi}}{4}\xi^{\prime2}+\frac{\xi_{\theta}}{z}-\frac{\xi_{\theta}^{\prime}}{2}-\frac{e^{-A-\chi}}{4}(2A_x\chi_x+\chi_{\theta}^2-\phi_x^2)+\frac{(e^{-A-\chi})_{xx}}{2}\\
+        &=\frac{e^{A+\chi}}{4}\xi^{\prime2}+\frac{\xi_{\theta}}{z}-\frac{\xi_{\theta}^{\prime}}{2}+\frac{e^{-A-\chi}}{2}[A_x^2+A_x\chi_x+\frac{1}{2}\chi_{\theta}^2+\frac{1}{2}\phi_x^2-(A_{xx}+\chi_{xx})]
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \textcolor{red}{\mathrm{COM}_\theta=\frac{\xi'}{2}-\frac{\xi}{z}+\frac{e^{-A-\chi}\chi_\theta}{2}}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        (\frac{f}{z^{3}})^{\prime}&=\frac{\xi_{\theta}}{z^{3}}+\frac{L^{2}}{2z^{4}}e^{-\chi}V+\frac{\mathrm{COM}}{z^{2}}\textcolor{red}{-\cot\theta(\frac{\xi'}{2z^2}+\frac{3e^{-A-\chi}A_\theta}{2z^2}+\frac{e^{-A-\chi}\chi_\theta}{2z^2}-\frac{2\xi}{z^3})-\frac{e^{-A-\chi}}{z^2}}\\
+        &=\frac{\xi_{\theta}}{z^{3}}+\frac{L^{2}}{2z^{4}}e^{-\chi}V+\frac{\mathrm{COM}\textcolor{red}{-\cot\theta(\mathrm{COM}_\theta-\frac{\xi}{z}+\frac{3e^{-A-\chi}A_\theta}{2})-e^{-A-\chi}}}{z^{2}}\\
+        &=(\frac{1+z^2\tilde{f}}{z^{3}})^{\prime}\\
+        z(\frac{\tilde{f}}{z})^{\prime}&=\tilde{f}'-\frac{\tilde
+        {f}}{z}\\
+        &=\frac{\xi_{\theta}}{z^2}+\frac{1}{z^3}(3+\frac{L^{2}}{2}e^{-\chi}V)+\frac{\mathrm{COM}\textcolor{red}{-\cot\theta(\mathrm{COM}_\theta-\frac{\xi}{z}+\frac{3e^{-A-\chi}A_\theta}{2})-e^{-A-\chi}}}{z}
+    \end{aligned}
+\end{equation}
+
+如果用视界边界条件：
+\begin{equation}
+    \begin{aligned}
+        (\frac{f}{z^{3}})^{\prime}&=\frac{\xi_{\theta}}{z^{3}}+\frac{L^{2}}{2z^{4}}e^{-\chi}V+\frac{\mathrm{COM}\textcolor{red}{-\cot\theta(\mathrm{COM}_\theta-\frac{\xi}{z}+\frac{3e^{-A-\chi}A_\theta}{2})-e^{-A-\chi}}}{z^{2}}\\
+        zf'-3f&=z\xi_{x}+\frac{L^{2}}{2}e^{-\chi}V+z^2(\mathrm{COM}\textcolor{red}{-\cot\theta(\mathrm{COM}_\theta-\frac{\xi}{z}+\frac{3e^{-A-\chi}A_\theta}{2})-e^{-A-\chi}})\\
+        &=2z\xi_{x}\textcolor{red}{+2\cot\theta z\xi}+\frac{L^{2}}{2}e^{-\chi}V+z^2[(\mathrm{COM}-\frac{\xi_x}{z})\textcolor{red}{-\cot\theta([\mathrm{COM}_\theta+\frac{\xi}{z}]+\frac{3e^{-A-\chi}A_\theta}{2})-e^{-A-\chi}}]\\
+        &=2z\xi_{x}\textcolor{red}{+2\cot\theta z\xi}+\frac{L^{2}}{2}e^{-\chi}V+z^2[\mathrm{COM}_f\textcolor{red}{-\cot\theta(\mathrm{COM}_{\theta f}+\frac{3e^{-A-\chi}A_\theta}{2})-e^{-A-\chi}}]\\
+        \mathrm{COM}_f&=\mathrm{COM}-\frac{\xi_x}{z}\\
+        &=\frac{e^{A+\chi}}{4}\xi^{\prime2}-\frac{\xi_{x}^{\prime}}{2}-\frac{e^{-A-\chi}}{4}(2A_x\chi_x+\chi_{x}^2-\phi_x^2)+\frac{(e^{-A-\chi})_{xx}}{2}\\
+        &=\frac{e^{A+\chi}}{4}\xi^{\prime2}-\frac{\xi_{x}^{\prime}}{2}+\frac{e^{-A-\chi}}{2}[A_x^2+A_x\chi_x+\frac{1}{2}\chi_{x}^2+\frac{1}{2}\phi_x^2-(A_{xx}+\chi_{xx})]\\
+        \textcolor{red}{\mathrm{COM}_{\theta f}}&\textcolor{red}{=\mathrm{COM}_\theta+\frac{\xi}{z}}\\
+        &\textcolor{red}{=\frac{\xi'}{2}+\frac{e^{-A-\chi}\chi_\theta}{2}}
+    \end{aligned}
+\end{equation}
+
+$e^{-A-\chi}E_{xx}-e^{A-\chi}E_{yy}$ gives the evolution equation of $A$:
+\begin{equation}
+    \begin{aligned}
+        z(\frac{\dot{A}}{z})^{\prime}&=\dot{A}^{\prime}-\frac{\dot{A}}{z}\\
+        &=\frac{z^{2}}{2}(\frac{fA^{\prime}-\xi A_{\theta}}{z^{2}})^{\prime}+\frac{(e^{-A-\chi}A_{\theta}-\xi A^{\prime})_{\theta}}{2}+\mathrm{COM}\textcolor{red}{+\cot\theta(-\frac{\xi A'}{2}+\frac{\xi'}{2}+\frac{e^{-A-\chi}\chi_\theta}{2}-\frac{\xi}{z})}\\
+        &=\frac{z^{2}}{2}(\frac{fA^{\prime}-\xi A_{\theta}}{z^{2}})^{\prime}+\frac{(e^{-A-\chi}A_{\theta}-\xi A^{\prime})_{\theta}}{2}+\mathrm{COM}\textcolor{red}{+\cot\theta(\mathrm{COM}_\theta-\frac{\xi A'}{2})}\\
+        &=\frac{(fA^{\prime}-\xi A_{\theta})'}{2}-\frac{fA^{\prime}-\xi A_{\theta}}{z}+\frac{(e^{-A-\chi}A_{\theta}-\xi A^{\prime})_{\theta}}{2}+\mathrm{COM}\textcolor{red}{+\cot\theta(\mathrm{COM}_\theta-\frac{\xi A'}{2})}
+    \end{aligned}
+\end{equation}
+
+the scalar equation gives the evolution equation of $\phi$:
+\begin{equation}
+    \begin{aligned}
+        z(\frac{\dot{\phi}}{z})^{\prime}&=\dot{\phi}^{\prime}-\frac{\dot{\phi}}{z}\\
+        &=\frac{z^{2}}{2}(\frac{f\phi'-\xi\phi_{\theta}}{z^{2}})^{\prime}+\frac{(e^{-A-\chi}\phi_{\theta}-\xi\phi')_{\theta}}{2}-\frac{L^{2}}{2z^{2}}e^{-\chi}V_\phi\textcolor{red}{+\cot\theta(-\frac{\xi \phi'}{2}+\frac{e^{-A-\chi}\phi_\theta}{2})}\\
+        &=\frac{(f\phi'-\xi\phi_{\theta})'}{2}-\frac{f\phi'-\xi\phi_{\theta}}{z}+\frac{(e^{-A-\chi}\phi_{\theta}-\xi\phi')_{\theta}}{2}-\frac{L^{2}}{2z^{2}}e^{-\chi}V_\phi\textcolor{red}{+\cot\theta(\frac{e^{-A-\chi}\phi_\theta}{2}-\frac{\xi \phi'}{2})}
+    \end{aligned}
+\end{equation}
+
+$E_{xn}=E_{xv}-fE_{xz}+\xi E_{xx}$ gives the evolution equation of $\xi$:
+\begin{equation}
+    \begin{aligned}
+        0&=\frac{2}{z}(f_{\theta}+f\chi_{\theta})+(2\xi e^{A+\chi}\xi^{\prime}-f^{\prime}+f[A^{\prime}+\chi^{\prime}])_{\theta}-\xi(e^{A+\chi}\xi^{\prime})_{\theta}-\xi(A+\chi)_{xx}\\
+        &\quad+A_{\theta}d_{n}A+\phi_{\theta}d_n\phi-(\dot{A}+\dot{\chi})_{\theta}+(e^{A+\chi}\xi^{\prime})_{v}\\
+        &=\frac{2}{z}(f_{\theta}+f\chi_{\theta})+2\xi_{\theta}e^{A+\chi}\xi^{\prime}+(f[A^{\prime}+\chi^{\prime}]-f^{\prime})_{\theta}+\xi(e^{A+\chi}\xi^{\prime})_{\theta}-\xi(A+\chi)_{xx}\\
+        &\quad+A_{\theta}d_{n}A+\phi_{\theta}d_n\phi-(\dot{A}+\dot{\chi})_{\theta}+(e^{A+\chi}\xi^{\prime})_{v}\\
+        &=\frac{2}{z}(f_{\theta}+f\chi_{\theta})+(2\xi e^{A+\chi}\xi^{\prime}-f^{\prime}+f[A^{\prime}+\chi^{\prime}]-[\dot{A}+\dot{\chi}])_{\theta}-\xi(e^{A+\chi}\xi^{\prime}+A_x+\chi_x)_{\theta}\\
+        &\quad+A_{\theta}d_{n}A+\phi_{\theta}d_n\phi+(e^{A+\chi}\xi^{\prime})_{v}\\
+        &\quad\textcolor{red}{+\cot\theta(\xi e^{A+\chi}\xi'-3\xi A_\theta+\xi\chi_\theta+2f A'-2\dot{A})-2\xi}\\
+        &=\textcolor{red}{+\cot\theta[\xi(e^{A+\chi}\xi'-3A_\theta+\chi_\theta)+2f A'-2\dot{A}]-2\xi}
+    \end{aligned}
+\end{equation}
+
+where $d_{n}:=\partial_{v}-f\partial_{z}+\xi\partial_{\theta}$.
+
+$E_{vn}=E_{vv}-fE_{vz}+\xi E_{vx}$ gives the evolution equation of $f$:
+\begin{equation}
+    \begin{aligned}
+        0&=(e^{-A-\chi}f_{x}-[f\xi]^{\prime}+\xi^{2}e^{A+\chi}\xi^{\prime}-\xi[d_{n}A+d_{n}\chi]-2d_{n}\xi)_{x}-\xi_x(\dot{A}+\dot{\chi})\\
+        &\quad-\frac{2}{z}(\dot{f}+f\dot{\chi})-\dot{A}d_{n}A-\dot{\phi}d_n\phi+\xi(e^{A+\chi}\xi^{\prime})_{v}\\
+        &\quad\textcolor{red}{+\cot\theta(\xi^2 e^{A+\chi}\xi'-\xi^2 A_\theta-\xi^2\chi_\theta+f\xi A'+f\xi\chi'-2\xi\dot{\chi}-2\xi\xi_\theta-\xi f'+f\xi'-2\dot{\xi}+e^{-A-\chi}f_\theta)}\\
+        &=\textcolor{red}{+\cot\theta(\xi^2[e^{A+\chi}\xi'-(A_\theta+\chi_\theta)]+\xi[f(A'+\chi')-2\dot{\chi}-2\xi_\theta-f']+f\xi'-2\dot{\xi}+e^{-A-\chi}f_\theta)}
+    \end{aligned}
+\end{equation}
+
+如果把$\theta$的取值范围从$[0,\pi]$扩充到$[-\pi,\pi]$，从方程中可以看出，$\xi$关于$\theta$是奇函数，而$f,\chi,A,\phi$关于$\theta$都是偶函数。另外注意，每求一次导就会让奇偶性交换一次。
+
+\subsubsection{asymptotic behavior}
+
+Assumning $L=1$, we expand the fields near the boundary ($z=0$):
+\begin{equation}
+    \begin{aligned}
+        f&=f_0+f_1 z+f_2 z^2+f_3 z^3+O(z^4)\\
+        \chi&=\chi_0+\chi_1 z+\chi_2 z^2+\chi_3 z^3+O(z^4)\\
+        \xi&=\xi_0+\xi_1 z+\xi_2 z^2+\xi_3 z^3+O(z^4)\\
+        A&=A_0+A_1 z+A_2 z^2+A_3 z^3+O(z^4)\\
+        \phi&=\phi_0+\phi_1 z+\phi_2 z^2+\phi_3 z^3+O(z^4)\\
+    \end{aligned}
+\end{equation}
+
+both $f_i$ are function of $(v,\theta)$, substituting them into equations of motion, we can get
+\begin{equation}
+    \chi_1=0,\phi_0=0,\xi_1=e^{-A_0-\chi_0}\partial_\theta\chi_0,f_0=e^{-\chi_0},f_1=\textcolor{red}{-\cot\theta\xi_0}-\partial_\theta\xi_0
+\end{equation}
+
+after letting $\chi_0=0,\xi_0=0$, we can get
+\begin{equation}
+    \xi_1=0,f_0=1,f_1=0
+\end{equation}
+\begin{equation}
+    A_1=\partial_v A_0,A_2=0
+\end{equation}
+
+after letting $A_0=0$, we can get
+\begin{equation}
+    A_1=0
+\end{equation}
+\begin{equation}
+    \xi_2=0,f_2=\chi_2\textcolor{red}{+1},\chi_2=\frac{\phi_1^2}{8},\chi_3=\frac{\phi_1\phi_2}{3}
+\end{equation}
+\begin{equation}
+    \phi_3=\partial_v\phi_2-\frac{119\phi_1^3}{360}-\frac{\partial_\theta^2\phi_1}{2}\textcolor{red}{-\cot\theta\frac{\partial_\theta\phi_1}{2}}
+\end{equation}
+\begin{equation}
+    \partial_v\xi_3=\frac{\partial_x f_3}{3}-\partial_x A_3-\frac{2\phi_1\partial_x\phi_2}{9}+\frac{\phi_2\partial_x\phi_1}{9}-\frac{\partial_v\phi_1\partial_x\phi_1}{4}+\frac{\phi_1\partial_{vx}\phi_1}{12}\textcolor{red}{-2\cot\theta A_3}
+\end{equation}
+\begin{equation}
+    \partial_v f_3=\frac{3\partial_x\xi_3}{2}+\frac{\phi_1\partial_v\phi_2}{6}+\frac{2\phi_2\partial_v\phi_1}{3}-\frac{(\partial_v\phi_1)^2}{2}+\frac{(\partial_x\phi_1)^2}{8}+\frac{\phi_1\partial_x^2\phi_1}{8}\textcolor{red}{+\cot\theta(\frac{3\xi_3}{2}+\frac{\phi_1\partial_\theta\phi_1}{8})}
+\end{equation}
+
+after letting $\phi_1(v,\theta)=\phi_1$, we can get
+\begin{equation}
+    \begin{aligned}
+        f&=1+(\frac{\phi_1^2}{8}\textcolor{red}{+1})z^2+f_3 z^3+O(z^4)\\
+        \chi&=\frac{\phi_1^2}{8}z^2+\frac{\phi_1\phi_2}{3}z^3+O(z^4)\\
+        \xi&=\xi_3 z^3+O(z^4)\\
+        A&=A_3 z^3+O(z^4)\\
+        \phi&=\phi_1 z+\phi_2 z^2+(\partial_v\phi_2-\frac{119\phi_1^3}{360})z^3+O(z^4)\\
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \partial_v\xi_3=\frac{\partial_x f_3}{3}-\partial_x A_3-\frac{2\phi_1\partial_x\phi_2}{9}\textcolor{red}{-2\cot\theta A_3}=\partial_x(\frac{ f_3}{3}-A_3-\frac{2\phi_1\phi_2}{9})\textcolor{red}{-2\cot\theta A_3}
+\end{equation}
+\begin{equation}
+    \partial_v f_3=\frac{3\partial_x\xi_3}{2}+\frac{\phi_1\partial_v\phi_2}{6}\textcolor{red}{+\cot\theta\frac{3\xi_3}{2}}
+\end{equation}
+
+\subsection{apparent horizon}
+
+\begin{equation}
+    k_0=\xi h_x + \frac{f}{2} + \frac{e^{- A - \chi} h_x^2}{2}
+\end{equation}
+
+apparent horizon condition
+\begin{equation}
+    \begin{aligned}
+        0&=\textcolor{red}{\cot\theta\xi}+\xi_x + \xi' h_x - e^{-A-\chi} A_x h_x - e^{-A-\chi} A' h_x^2 - e^{-A-\chi} \chi_x h_x - e^{-A-\chi} \chi' h_x^2\\
+        &\quad + e^{-A-\chi} h_{xx} \textcolor{red}{+\cot\theta e^{-A-\chi}h_x} + \frac{f}{h} - \frac{e^{-A-\chi} h_x^2}{h}
+    \end{aligned}
+\end{equation}
+
+i.e.
+\begin{equation}
+    (\partial_{x}+h_{x}\partial_{z})(\xi+h_{x}e^{-A-\chi})\textcolor{red}{+\cot\theta(\xi+h_{x}e^{-A-\chi})}=-\frac{1}{h}(f-h_{x}^{2}e^{-A-\chi})
+\end{equation}
+
+the evolution of apparent horizon
+\begin{equation}
+    \begin{aligned}
+        &\quad(\partial_{x}+h_{x}\partial_{z})([\partial_{v}+\dot{h}\partial_{z}]\xi+\dot{h}_{x}e^{-A-\chi}+h_{x}[\partial_{v}+\dot{h}\partial_{z}]e^{-A-\chi})+\dot{h}_{x}(\xi+h_{x}e^{-A-\chi})^{\prime}\\
+        &\quad\textcolor{red}{+\cot\theta([\partial_{v}+\dot{h}\partial_{z}]\xi+\dot{h}_{x}e^{-A-\chi}+h_{x}[\partial_{v}+\dot{h}\partial_{z}]e^{-A-\chi})}\\
+        &=-\frac{1}{h}([\partial_{v}+\dot{h}\partial_{z}]f-2h_{x}\dot{h}_{x}e^{-A-\chi}-h_{x}^{2}[\partial_{v}+\dot{h}\partial_{z}]e^{-A-\chi})+h^{-2}\dot{h}(f-h_{x}^{2}e^{-A-\chi})
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    A_0\dot{h}+A_1\dot{h}_x+A_2\dot{h}_{xx}+B=0
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        A_0&=\xi'_{x'}+\left(h_x(e^{-A-\chi})'\right)_{x'}\textcolor{red}{+\cot\theta(\xi+h_{x}e^{-A-\chi})'}+\frac{f'}{h}-\frac{h_x^2}{h}(e^{-A-\chi})'-\frac{f-h_x^2 e^{-A-\chi}}{h^2}\\
+        &=(\xi+h_x e^{-A-\chi})'_{x'}\textcolor{red}{+\cot\theta(\xi+h_{x}e^{-A-\chi})'}+\frac{f'}{h}-\frac{h_x^2}{h}(e^{-A-\chi})'-\frac{f-h_x^2 e^{-A-\chi}}{h^2}\\
+        A_1&=\xi'+(e^{-A-\chi})_{x'}+h_x(e^{-A-\chi})'+(\xi+h_x e^{-A-\chi})'\textcolor{red}{+\cot\theta e^{-A-\chi}}-\frac{2h_x}{h}e^{-A-\chi}\\
+        &=(e^{-A-\chi})_{x'}+2(\xi+h_x e^{-A-\chi})'\textcolor{red}{+\cot\theta e^{-A-\chi}}-\frac{2h_x}{h}e^{-A-\chi}\\
+        A_2&=e^{-A-\chi}\\
+        B&=(\dot{\xi}+h_x\partial_v(e^{-A-\chi}))_{x'}\textcolor{red}{+\cot\theta(\dot{\xi}+h_x\partial_v(e^{-A-\chi}))}+\frac{\dot{f}-h_x^2\partial_v(e^{-A-\chi})}{h}
+    \end{aligned}
+\end{equation}
+
+\subsubsection{check}
+the metric
+\begin{equation}
+    ds^2=\frac{L^2}{z^2}(-[f(v,z,\theta)e^{-\chi(v,z,\theta)}-e^{A(v,z,\theta)}\xi(v,z,\theta)^2]dv^2-2e^{-\chi}dvdz-2\xi e^Advd\theta+e^Ad\theta^2+e^{-A}\sin^2\theta d\varphi^2)
+\end{equation}
+
+the inverse of the metric
+\begin{equation}
+    \left[\begin{matrix}
+        0 & - z^{2} e^{\chi} & 0 & 0\\- z^{2} e^{\chi} & z^{2} f e^{\chi} & - z^{2} \xi e^{\chi} & 0\\0 & - z^{2} \xi e^{\chi} & z^{2} e^{- A} & 0\\0 & 0 & 0 & \frac{z^{2} e^{A}}{\sin^{2}{\left(\theta \right)}}
+    \end{matrix}\right]
+\end{equation}
+
+\begin{equation}
+    (dz)_\mu=(0,1,0,0),\quad(dz)^\mu=g^{\mu\nu}(dz)_\nu=-z^2 e^{\chi}\cdot(1,-f,\xi,0)\propto(\partial_n)^\mu
+\end{equation}
+
+\begin{equation}
+    E^{zz},{E^z}_b,E_{ab}
+\end{equation}
+
+\begin{equation}
+    {E^z}_\varphi=0,E_{v\varphi}=0,E_{\theta\varphi}=0
+\end{equation}
+
+$\partial_v E_{zz}$ gives the evolution equation of $\chi$:
+\begin{equation}
+    \dot{\chi}'=\frac{z}{2}(A'\dot{A}'+\phi'\dot{\phi}')
+\end{equation}
+
+$e^{-A-\chi}E_{\theta\theta}+e^{A-\chi}E_{\varphi\varphi}/\sin^2\theta$ gives rise to
+\begin{equation}
+    \begin{aligned}
+        0&=- \xi \frac{\partial}{\partial \theta} A \frac{\partial}{\partial z} A - \xi \frac{\partial}{\partial \theta} \phi \frac{\partial}{\partial z} \phi + 2 \xi \frac{\partial^{2}}{\partial z\partial \theta} \chi + \frac{\xi \cos{\left(\theta \right)} \frac{\partial}{\partial z} A}{\sin{\left(\theta \right)}} + \frac{f \left(\frac{\partial}{\partial z} A\right)^{2}}{2} - f \frac{\partial^{2}}{\partial z^{2}} \chi + \frac{f \left(\frac{\partial}{\partial z} \phi\right)^{2}}{2}\\
+        &\quad- e^{A} e^{\chi} \left(\frac{\partial}{\partial z} \xi\right)^{2} - \frac{\partial}{\partial v} A \frac{\partial}{\partial z} A - \frac{\partial}{\partial z} A \frac{\partial}{\partial \theta} \xi + \frac{\partial}{\partial \theta} \chi \frac{\partial}{\partial z} \xi - \frac{\partial}{\partial z} \chi \frac{\partial}{\partial z} f - \frac{\partial}{\partial v} \phi \frac{\partial}{\partial z} \phi + \frac{\partial^{2}}{\partial z^{2}} f\\
+        &\quad+ \textcolor{red}{2 \frac{\partial^{2}}{\partial z\partial v} \chi} - \frac{\partial^{2}}{\partial z\partial \theta} \xi - \frac{\cos{\left(\theta \right)} \frac{\partial}{\partial z} \xi}{\sin{\left(\theta \right)}} + e^{- A} e^{- \chi} \frac{\partial}{\partial \theta} A \frac{\partial}{\partial \theta} \chi + e^{- A} e^{- \chi} \left(\frac{\partial}{\partial \theta} \chi\right)^{2} - e^{- A} e^{- \chi} \frac{\partial^{2}}{\partial \theta^{2}} \chi\\
+        &\quad- \frac{e^{- A} e^{- \chi} \cos{\left(\theta \right)} \frac{\partial}{\partial \theta} \chi}{\sin{\left(\theta \right)}} + \frac{2 \xi \cos{\left(\theta \right)}}{z \sin{\left(\theta \right)}} + \frac{2 \frac{\partial}{\partial \theta} \xi}{z} - \frac{4 \frac{\partial}{\partial z} f}{z} + \frac{V{\left(\phi \right)} e^{- \chi}}{z^{2}} + \frac{6 f}{z^{2}}
+    \end{aligned}
+\end{equation}
+
+\end{document}

@@ -1,0 +1,236 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[heading=true]{ctex}
+\usepackage{amsmath,amssymb,amsthm,bm,graphicx,xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage{fontspec}
+\setmainfont{Times New Roman} % 主要字体
+\setsansfont{Arial} % 无衬线字体
+\setmonofont{Courier New} % 等宽字体
+% ctex中文字体默认为宋体
+
+\linespread{1.25} % 1.25*1.2=1.5倍行距
+\numberwithin{equation}{section}
+
+\title{horizon-fixed evolution scheme using BS coordinates}
+\author{Zhuan Ning}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{vacuum case}
+
+Lagrangian density
+\begin{equation}
+    \mathcal{L}=R-2\Lambda
+\end{equation}
+
+Einstein equation
+\begin{equation}
+    R_{\mu\nu}-\frac{1}{2}R g_{\mu\nu}+\Lambda g_{\mu\nu}=0
+\end{equation}
+
+Calculate the trace on both sides of the equation
+\begin{equation}
+    R-2R+4\Lambda=0\Rightarrow R=4\Lambda
+\end{equation}
+
+So the Einstein equation is equivalent to
+\begin{equation}
+    R_{\mu\nu}-\Lambda g_{\mu\nu}=0
+\end{equation}
+
+\section{with scalar field}
+
+Lagrangian density
+\begin{equation}
+    \mathcal{L}=R-\frac{1}{2}\nabla_\mu\phi\nabla^\mu\phi-P(\phi)
+\end{equation}
+
+where
+\begin{equation}
+    P(\phi)=-6\cosh(\frac{\phi}{\sqrt{3}})+b_4\phi^4
+\end{equation}
+
+and $b_4=-\frac{1}{5}$.
+
+the BS coordinates
+\begin{equation}
+    \mathrm{d}s^2=-\left(\mathrm{e}^{2\beta}Vz-\frac{h_{AB}U^AU^B}{z^2}\right)\mathrm{d}t^2-\frac{2\mathrm{e}^{2\beta}}{z^2}\mathrm{d}t\mathrm{~d}z-\frac{2h_{AB}U^B}{z^2}\mathrm{d}t\mathrm{~d}x^A+\frac{h_{AB}}{z^2}\mathrm{d}x^A\mathrm{~d}x^B
+\end{equation}
+
+where
+\begin{equation}
+    h=\mathrm{e}^{2\chi}\begin{pmatrix}\mathrm{e}^\alpha\cosh\theta&\sinh\theta\\\sinh\theta&\mathrm{e}^{-\alpha}\cosh\theta\end{pmatrix},
+    \quad(U^{A})=\left(\begin{array}{c}
+        \xi\\
+        \eta
+        \end{array}\right)
+\end{equation}
+
+we fix the radial dependence of $\chi$ through a gauge choice:
+\begin{equation}
+    \chi\left(t,x,y,z\right)=\frac{1}{4}\ln(1+2z^{3}\chi_{3}(t,x,y))
+\end{equation}
+so
+\begin{align}
+    \chi'&=\frac{3 z^{2} \chi_{3}}{2 \cdot \left(2 z^{3} \chi_{3} + 1\right)}\\
+    \chi_x&=\frac{z^{3} \chi_{3_x}}{2 \cdot \left(2 z^{3} \chi_{3} + 1\right)}\\
+    \chi''&=- \frac{9 z^{4} \chi_{3}^{2}}{\left(2 z^{3} \chi_{3} + 1\right)^2} + \frac{3 z \chi_{3}}{2 z^{3} \chi_{3} + 1}\\
+    \chi'_x&=- \frac{3 z^{5} \chi_{3} \chi_{3_x}}{\left(2 z^{3} \chi_{3} + 1\right)^2} + \frac{3 z^{2} \chi_{3_x}}{2 \cdot \left(2 z^{3} \chi_{3} + 1\right)}\\
+    \chi_{xx}&=- \frac{z^{6} \left(\chi_{3_x}\right)^{2}}{\left(2 z^{3} \chi_{3} + 1\right)^2} + \frac{z^{3} \chi_{3_{xx}}}{2 \cdot \left(2 z^{3} \chi_{3} + 1\right)}
+\end{align}
+
+apparent horizon condition:
+\begin{equation}
+    z^2V(z\chi'-1)-2\xi\chi_x-\xi_x-2\dot{\chi}|_{z=1}=0
+\end{equation}
+i.e.
+\begin{equation}
+    \dot{\chi}-\frac{z^2}{2}V(z\chi'-1)+\xi\chi_x+\frac{\xi_x}{2}|_{z=1}=0
+\end{equation}
+
+$E_{zz}$ gives rise to the constraint equation of $\beta$:
+\begin{equation}
+    (z\chi'-1)\beta'=\frac{z}{8}(\alpha'^2+\phi'^2+4\chi'^2)+\frac{z}{2}\chi''
+\end{equation}
+
+$E_{zx}$ gives rise to the constraint equation of $\xi$:
+\begin{equation}
+    \frac{z^2e^{-2\chi}}{2}\Xi'=\frac{e^{2\chi}}{z^2}(z^2e^{-2\chi}\beta_x)'-\frac{1}{2}(\alpha_x'+2\alpha'\chi_x-\alpha'\alpha_x-\phi'\phi_x)+\chi_x'
+\end{equation}
+where
+\begin{equation}
+    \Xi=\frac{e^{4\chi-2\beta+\alpha}\xi'}{z^2}
+\end{equation}
+
+$E_{zv}-\frac{f}{2}E_{zz}+\xi E_{zx}+\eta E_{zy}$ gives rise to the constraint equation of $d_t\chi$:
+\begin{equation}
+    \begin{aligned}
+        2e^{-2\chi}z^2 \left(\frac{e^{2\chi}}{z^2}d_t\chi\right)' &= \frac{e^{\alpha- 2 \beta+2 \chi} \left(\xi'\right)^{2}}{4}+2 \xi_x \left(\frac{1}{z} - \chi'\right) - \frac{\xi'_x}{2} + \chi_x \left(\frac{4 \xi}{z} - 4 \xi \chi' - \xi'\right) - 2 \xi \chi'_x + \frac{P e^{2 \beta}}{2 z^{2}}\\
+        &\quad + e^{- \alpha+2 \beta- 2 \chi} \left(\left(\beta_x\right)^{2} + \frac{\left(\phi_x\right)^{2}}{4} - \alpha_x \left(\beta_x + \chi_x - \frac{\alpha_x}{2}\right) + \beta_{xx} + \chi_{xx} - \frac{\alpha_{xx}}{2}\right)
+    \end{aligned}
+\end{equation}
+
+$e^{-\alpha}E_{xx}-e^{\alpha}E_{yy}$ gives rise to the constraint equation of $d_t\alpha$:
+\begin{equation}
+    \begin{aligned}
+        e^{-\chi}z \left(\frac{e^\chi}{z}d_t\alpha\right)'+\alpha'd_t\chi &= \frac{e^{\alpha- 2 \beta+2 \chi} \left(\xi'\right)^{2}}{4} + \xi_x \left(\frac{1}{z} - \chi' - \frac{\alpha'}{2}\right) - \frac{\xi'_x}{2} + \alpha_x \left(\frac{\xi}{z} - \xi \chi' - \frac{\xi'}{2}\right) - \xi \chi_x \alpha' - \xi \alpha'_x\\
+        &\quad + e^{- \alpha+2 \beta- 2 \chi} \left(\left(\beta_x\right)^{2} + \frac{\left(\phi_x\right)^{2}}{4} - 2 \beta_x \chi_x + \beta_{xx}\right)
+    \end{aligned}
+\end{equation}
+
+the scalar equation gives rise to the constraint equation of $d_t\phi$:
+\begin{equation}
+    \begin{aligned}
+        e^{-\chi}z \left(\frac{e^\chi}{z}d_t\phi\right)'+\phi'd_t\chi &= - \xi_x \frac{\phi'}{2} + \phi_x \left(\frac{\xi}{z} - \xi \chi' - \frac{\xi'}{2}\right) - \xi \chi_x \phi' - \xi \phi'_x - \frac{e^{2 \beta} \frac{\partial}{\partial \phi} P}{2 z^{2}}\\
+        &\quad + e^{- \alpha+2 \beta- 2 \chi} \left(\phi_x \left(\beta_x -\frac{\alpha_x}{2}\right) + \frac{\phi_{xx}}{2}\right)
+    \end{aligned}
+\end{equation}
+
+where
+\begin{align}
+    d_t\chi&=\dot{\chi}-\frac{z^2}{2}V(z\chi'-1)\\
+    d_t\alpha&=\dot{\alpha}-\frac{z^3}{2}V\alpha'\\
+    d_t\phi&=\dot{\phi}-\frac{z^3}{2}V\phi'\\
+\end{align}
+
+$E_t^z+U^AE_A^z|_{z=1}$ gives rise to the elliptic equation of $V_H$:
+\begin{equation}
+    \begin{aligned}
+        &\quad \frac{z^{3} e^{- \alpha+2 \beta- 2 \chi} }{2} V_{xx} + z^{3} \left(\frac{\xi'}{2} + e^{- \alpha+2 \beta- 2 \chi} \left(\beta_x - \frac{\alpha_x}{2}\right)\right) V_x\\
+        & = \xi^{2} \left(\frac{\left(\alpha_x\right)^{2}}{2} + \frac{\left(\phi_x\right)^{2}}{2}\right) + \xi \left(d_{t}\alpha \alpha_x + d_{t}\phi \phi_x\right) + \xi_x \left(\frac{\xi_x}{2} + \xi \alpha_x + d_{t}\alpha\right) + \frac{d_{t}\alpha^{2}}{2} + \frac{d_{t}\phi^{2}}{2}
+    \end{aligned}
+\end{equation}
+or
+\begin{equation}
+    \begin{aligned}
+        &\quad \frac{z^{3} e^{- \alpha+2 \beta- 2 \chi} }{2} V_{xx} + z^{3} \left(\frac{\xi'}{2} + e^{- \alpha+2 \beta- 2 \chi} \left(\beta_x - \frac{\alpha_x}{2}\right)\right) V_x - z^{3} \left(\xi \chi'_x + \chi_x \xi' + \partial_z d_{t}\chi + \frac{\xi'_x}{2}\right) V\\
+        & = \xi^{2} \left(\frac{\left(\alpha_x\right)^{2}}{2} + \frac{\left(\phi_x\right)^{2}}{2}\right) + \xi \left(d_{t}\alpha \alpha_x + d_{t}\phi \phi_x\right) + \xi_x \left(\frac{\xi_x}{2} + \xi \alpha_x + d_{t}\alpha\right) + \frac{d_{t}\alpha^{2}}{2} + \frac{d_{t}\phi^{2}}{2} \\
+        &\quad - 2\xi \left(\xi \chi_{xx} + \xi_x \chi_x + \frac{\xi_{xx}}{2} + \partial_x d_t\chi\right)
+    \end{aligned}
+\end{equation}
+
+\subsection{$\beta_0=0$}
+
+let $\beta_0=0, \xi_0=0, \alpha_0=0$, asymptotic behavior (near $z=0$):
+\begin{align}
+    \beta&=-\frac{\phi_1^2}{16}z^2-\left(\frac{\phi_1\phi_2}{6}+\frac{\chi_3}{2}\right)z^3+O(z^4)\\
+    \Xi&=3\xi_3+O(z)\\
+    \xi&=\xi_3z^3+O(z^4)\\
+    z^3V&=1+V_3z^3+O(z^4)\\
+    \chi&=\frac{\chi_3}{2}z^3+O(z^4)\\
+    \alpha&=\alpha_3z^3+O(z^4)\\
+    \phi&=\phi_1z+\phi_2z^2+O(z^3)\\
+    d_t\chi&=\frac{1}{2 z} + \frac{\phi_{1}^{2} z}{16} + z^{2} \left(\frac{V_{3}}{2} - \frac{3 \chi_{3}}{4}\right) + O\left(z^{3}\right)\\
+    d_t\alpha&=- \frac{3 z^{2} \alpha_{3}}{2} + O\left(z^{3}\right)\\
+    d_t\phi&= - \frac{\phi_{1}}{2} - z \phi_{2} + z^{2} \left(- \frac{\phi_{1}^{3}}{16} - \frac{3 \phi_{3}}{2} + \dot{\phi}_{2}\right) + O\left(z^{3}\right)
+\end{align}
+
+equations of $\dot{V}_3$ and $\dot{\xi}_3$:
+\begin{align}
+    \dot{\xi}_3&=- \frac{2 \phi_{1} \partial_x \phi_{2}}{9} + \frac{\partial_x V_{3}}{3} - \partial_x \alpha_{3} - \frac{2 \partial_x \chi_{3}}{3}\\
+    \dot{V}_3&=\frac{\phi_{1} \dot{\phi}_{2}}{6} + 2 \dot{\chi}_{3} + \frac{3 \partial_x \xi_{3}}{2}
+\end{align}
+
+subtraction
+\begin{align}
+    \beta&=-\frac{\phi_1^2}{16}z^2-\left(\frac{\phi_1\phi_2}{6}+\frac{\chi_3}{2}\right)z^3+z^4\beta_s, \\
+    \xi&=z^2\xi_s, \\
+    \Xi&=\Xi_s, \\
+    V&=\frac{1}{z^{3}}(1+z^{2}V_{s}), \\
+    d_{t}\chi&=\frac{1}{2z}+\frac{\phi_{1}^{2} z}{16}+z^{2}\mathrm{e}^{-2\chi}d_{t}\chi_{s}, \\
+    \alpha&=z^2\alpha_s, \\
+    \phi&=z\phi_s, \\
+    d_t\alpha&=zd_t\alpha_s, \\
+    d_t\phi&=-\frac{\phi_1}{2}+ze^{-\chi}d_t\phi_s, \\
+\end{align}
+
+let $d_t\chi=\frac{1}{2z}+\frac{\phi_1^2z}{16}+z^2e^{-2\chi}d_t\chi_s$, then
+\begin{equation}
+    \begin{aligned}
+        &\quad 2e^{-2\chi}z^2 \left(\frac{e^{2\chi}}{2z^3}+\frac{e^{2\chi}\phi_1^2}{16z}+d_t\chi_s\right)'\\
+        &= \frac{e^{\alpha- 2 \beta+2 \chi} \left(\xi'\right)^{2}}{4}+2 \xi_x \left(\frac{1}{z} - \chi'\right) - \frac{\xi'_x}{2} + \chi_x \left(\frac{4 \xi}{z} - 4 \xi \chi' - \xi'\right) - 2 \xi \chi'_x + \frac{P e^{2 \beta}}{2 z^{2}}\\
+        &\quad + e^{- \alpha+2 \beta- 2 \chi} \left(\left(\beta_x\right)^{2} + \frac{\left(\phi_x\right)^{2}}{4} - \alpha_x \left(\beta_x + \chi_x - \frac{\alpha_x}{2}\right) + \beta_{xx} + \chi_{xx} - \frac{\alpha_{xx}}{2}\right)
+    \end{aligned}
+\end{equation}
+
+let $d_t\phi=-\frac{\phi_1}{2}+ze^{-\chi}d_t\phi_s$ then
+\begin{equation}
+    \begin{aligned}
+        e^{-\chi}z \left(-\frac{e^\chi\phi_1}{2z}+d_t\phi_s\right)'+\phi'd_t\chi &= - \xi_x \frac{\phi'}{2} + \phi_x \left(\frac{\xi}{z} - \xi \chi' - \frac{\xi'}{2}\right) - \xi \chi_x \phi' - \xi \phi'_x - \frac{e^{2 \beta} \frac{\partial}{\partial \phi} P}{2 z^{2}}\\
+        &\quad + e^{- \alpha+2 \beta- 2 \chi} \left(\phi_x \left(\beta_x -\frac{\alpha_x}{2}\right) + \frac{\phi_{xx}}{2}\right)
+    \end{aligned}
+\end{equation}
+
+\subsection{$\phi=0$ and open source $\beta_0$}
+
+subtraction
+\begin{align}
+    \beta&=\beta_0-\frac{z^2}{2}\chi_3+z^4\beta_4
+\end{align}
+\begin{equation}
+    (z\chi'-1)(\beta_0-\frac{z^2}{2}\chi_3+z^4\beta_4)'=\frac{z}{8}(\alpha'^2+\phi'^2+4\chi'^2)+\frac{z}{2}\chi''
+\end{equation}
+
+\subsection{static solution}
+
+equations for static solutions with spherical symmetry:
+\begin{align}
+    0&=z \beta' \chi' - \frac{z \left(\chi'\right)^{2}}{2} - \frac{z \frac{d^{2}}{d z^{2}} \chi}{2} - \frac{z \left(\phi'\right)^{2}}{8} - \beta'\\
+    0&=- 2 z^{3} V \left(\chi'\right)^{2} - z^{3} V \frac{d^{2}}{d z^{2}} \chi - z^{3} V' \chi' + z^{2} V \chi' + z^{2} V' - \frac{P{\left(\phi \right)} e^{2 \beta}}{2 z^{2}}\\
+    0&=z^{3} V e^{- 2 \beta} e^{2 \chi} \frac{d^{2}}{d z^{2}} \beta + z^{3} V e^{- 2 \beta} e^{2 \chi} \left(\chi'\right)^{2} + z^{3} V e^{- 2 \beta} e^{2 \chi} \frac{d^{2}}{d z^{2}} \chi + \frac{z^{3} V e^{- 2 \beta} e^{2 \chi} \left(\phi'\right)^{2}}{4} + z^{3} e^{- 2 \beta} e^{2 \chi} V' \beta' + z^{3} e^{- 2 \beta} e^{2 \chi} V' \chi' + \frac{z^{3} e^{- 2 \beta} e^{2 \chi} \frac{d^{2}}{d z^{2}} V}{2} + 3 z^{2} V e^{- 2 \beta} e^{2 \chi} \beta' + z^{2} V e^{- 2 \beta} e^{2 \chi} \chi' + z^{2} e^{- 2 \beta} e^{2 \chi} V' + \frac{P{\left(\phi \right)} e^{2 \chi}}{2 z^{2}}\\
+    0&=- z^{3} V \chi' \phi' - \frac{z^{3} V \frac{d^{2}}{d z^{2}} \phi}{2} - \frac{z^{3} V' \phi'}{2} - \frac{z^{2} V \phi'}{2} + \frac{e^{2 \beta} \frac{d}{d \phi} P{\left(\phi \right)}}{2 z^{2}}
+\end{align}
+
+boundary conditions:
+\begin{align}
+    \beta|_{z=0}&=0\\
+    \chi'|_{z=1}&=1\\
+    V|_{z=1}&=V_0\\
+    \phi'|_{z=0}&=\phi_1
+\end{align}
+
+\end{document}
